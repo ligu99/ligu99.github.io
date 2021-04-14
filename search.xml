@@ -45,34 +45,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript闭包</title>
-    <url>/2018/03/11/2018-03-11/</url>
-    <content><![CDATA[<p><strong>需求：获取内部变量</strong></p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">    var n &#x3D; 999;</span><br><span class="line">    function f2() &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    return f2;</span><br><span class="line">&#125;</span><br><span class="line">var result &#x3D; f1();</span><br><span class="line">console.log(result()); &#x2F;&#x2F; 999</span><br></pre></td></tr></table></figure>
-
-
-<ol>
-<li>闭包：外部获取内部局部变量，修改局部变量</li>
-<li>js特性：子函数可以拿到父函数局部变量</li>
-</ol>
-<ul>
-<li>闭包就是函数里面的函数，通过子函数可以在外部就可以拿到父函数的局部变量，拥有这个功能的子函数就叫做闭包；</li>
-<li>优点：可以在外面拿到局部变量，修改局部变量；</li>
-<li>缺点：滥用闭包导致内存溢出，不会被垃圾回收机制回收；</li>
-</ul>
-<p><strong>阮一峰的对闭包的理解</strong></p>
-<p>各种专业文献上的”闭包”（closure）定义非常抽象，很难看懂。我的理解是，闭包就是能够读取其他函数内部变量的函数。<br>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成”定义在一个函数内部的函数”。<br>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-        <tag>闭包</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>flex布局</title>
     <url>/2018/03/03/2018-03-03/</url>
     <content><![CDATA[<p><strong>Flex 布局：意为“弹性布局/弹性盒子模型”<br>弹性盒子模型：由弹性容器（父元素）和 弹性项目（子元素）组成<br>如果父元素设置为弹性容器后，子元素自然变成弹性项目，弹性项目会按照弹性盒模型的规则去布局。</strong></p>
@@ -187,32 +159,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS正则</title>
-    <url>/2018/04/02/2018-04-02/</url>
-    <content><![CDATA[<ol>
-<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<a id="more"></a>
-
-<ol start="3">
-<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>正则</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS hack</title>
     <url>/2018/04/08/2018-04-08/</url>
     <content><![CDATA[<p><strong>针对不同浏览器写不同的 CSS code 的过程就是 CSS hack。</strong></p>
@@ -224,6 +170,34 @@
       <tags>
         <tag>css</tag>
         <tag>hack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript闭包</title>
+    <url>/2018/03/11/2018-03-11/</url>
+    <content><![CDATA[<p><strong>需求：获取内部变量</strong></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">    var n &#x3D; 999;</span><br><span class="line">    function f2() &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    return f2;</span><br><span class="line">&#125;</span><br><span class="line">var result &#x3D; f1();</span><br><span class="line">console.log(result()); &#x2F;&#x2F; 999</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li>闭包：外部获取内部局部变量，修改局部变量</li>
+<li>js特性：子函数可以拿到父函数局部变量</li>
+</ol>
+<ul>
+<li>闭包就是函数里面的函数，通过子函数可以在外部就可以拿到父函数的局部变量，拥有这个功能的子函数就叫做闭包；</li>
+<li>优点：可以在外面拿到局部变量，修改局部变量；</li>
+<li>缺点：滥用闭包导致内存溢出，不会被垃圾回收机制回收；</li>
+</ul>
+<p><strong>阮一峰的对闭包的理解</strong></p>
+<p>各种专业文献上的”闭包”（closure）定义非常抽象，很难看懂。我的理解是，闭包就是能够读取其他函数内部变量的函数。<br>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成”定义在一个函数内部的函数”。<br>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>闭包</tag>
       </tags>
   </entry>
   <entry>
@@ -300,35 +274,6 @@
         <tag>Cookie</tag>
         <tag>LocalStorage</tag>
         <tag>sessionStorage</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的省略号</title>
-    <url>/2018/05/13/2018-05-13/</url>
-    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
-<ol>
-<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
-</ol>
-<a id="more"></a>
-
-<ol start="2">
-<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
-</li>
-<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
-</li>
-</ol>
-<p><strong>单行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>多行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>省略号</tag>
-        <tag>裁剪</tag>
       </tags>
   </entry>
   <entry>
@@ -455,57 +400,6 @@
       </tags>
   </entry>
   <entry>
-    <title>el-date-picker在清空时，控制台报错</title>
-    <url>/2019/05/01/2019-05-01/</url>
-    <content><![CDATA[<p><strong>问题：el-date-picker 在清空时，控制台报错</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue.js:634 [Vue warn]: Error in v-on handler: &quot;TypeError: Cannot read property &#39;0&#39; of null&quot;</span><br><span class="line"></span><br><span class="line">found in</span><br><span class="line"></span><br><span class="line">---&gt; &lt;ElDatePicker&gt; at packages&#x2F;date-picker&#x2F;src&#x2F;picker.vue</span><br><span class="line">       &lt;Root&gt;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-date-picker</span><br><span class="line">    v-model&#x3D;&quot;value1&quot;</span><br><span class="line">    type&#x3D;&quot;datetimerange&quot;</span><br><span class="line">    format&#x3D;&quot;yyyy-MM-dd HH:mm&quot;</span><br><span class="line">    value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">    range-separator&#x3D;&quot;至&quot;</span><br><span class="line">    start-placeholder&#x3D;&quot;开始日期&quot;</span><br><span class="line">    end-placeholder&#x3D;&quot;结束日期&quot;</span><br><span class="line">    @change&#x3D;&quot;getTime&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-date-picker&gt;</span><br><span class="line"></span><br><span class="line">getTime()&#123;</span><br><span class="line">    if (!this.value1) &#123;&#x2F;&#x2F;解决value1为null时，控制台报错的问题</span><br><span class="line">        this.value1 &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>el-tooltip修改样式</title>
-    <url>/2019/05/19/2019-05-19/</url>
-    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
-<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VUE 定时请求接口数据</title>
-    <url>/2019/06/08/2019-06-08/</url>
-    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>element-ui 表格数据格式化</title>
     <url>/2019/07/20/2019-07-20/</url>
     <content><![CDATA[<p><strong>element-ui 表格需要格式化内容后展示</strong></p>
@@ -521,6 +415,24 @@
       <tags>
         <tag>element</tag>
         <tag>filters</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>el-date-picker在清空时，控制台报错</title>
+    <url>/2019/05/01/2019-05-01/</url>
+    <content><![CDATA[<p><strong>问题：el-date-picker 在清空时，控制台报错</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue.js:634 [Vue warn]: Error in v-on handler: &quot;TypeError: Cannot read property &#39;0&#39; of null&quot;</span><br><span class="line"></span><br><span class="line">found in</span><br><span class="line"></span><br><span class="line">---&gt; &lt;ElDatePicker&gt; at packages&#x2F;date-picker&#x2F;src&#x2F;picker.vue</span><br><span class="line">       &lt;Root&gt;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-date-picker</span><br><span class="line">    v-model&#x3D;&quot;value1&quot;</span><br><span class="line">    type&#x3D;&quot;datetimerange&quot;</span><br><span class="line">    format&#x3D;&quot;yyyy-MM-dd HH:mm&quot;</span><br><span class="line">    value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">    range-separator&#x3D;&quot;至&quot;</span><br><span class="line">    start-placeholder&#x3D;&quot;开始日期&quot;</span><br><span class="line">    end-placeholder&#x3D;&quot;结束日期&quot;</span><br><span class="line">    @change&#x3D;&quot;getTime&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-date-picker&gt;</span><br><span class="line"></span><br><span class="line">getTime()&#123;</span><br><span class="line">    if (!this.value1) &#123;&#x2F;&#x2F;解决value1为null时，控制台报错的问题</span><br><span class="line">        this.value1 &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -546,6 +458,35 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS中的省略号</title>
+    <url>/2018/05/13/2018-05-13/</url>
+    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
+<ol>
+<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
+</ol>
+<a id="more"></a>
+
+<ol start="2">
+<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
+</li>
+<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
+</li>
+</ol>
+<p><strong>单行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>多行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>省略号</tag>
+        <tag>裁剪</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS的 &amp;&amp; 和 || 同时使用的思考</title>
     <url>/2019/08/11/2019-08-11/</url>
     <content><![CDATA[<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>&amp;&amp; 和 || 是没有优先级的，代码从左到右执行</strong></p>
@@ -565,6 +506,48 @@
       </categories>
       <tags>
         <tag>逻辑运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VUE 定时请求接口数据</title>
+    <url>/2019/06/08/2019-06-08/</url>
+    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS正则</title>
+    <url>/2018/04/02/2018-04-02/</url>
+    <content><![CDATA[<ol>
+<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<a id="more"></a>
+
+<ol start="3">
+<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
@@ -668,6 +651,41 @@
       </tags>
   </entry>
   <entry>
+    <title>el-tooltip修改样式</title>
+    <url>/2019/05/19/2019-05-19/</url>
+    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
+<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除当前页最后一条数据，页面还停留在当前页</title>
+    <url>/2020/01/04/2020-01-04/</url>
+    <content><![CDATA[<p>解决删除当前页最后一条数据，页面还停留在当前页的问题</p>
+<a id="more"></a>
+
+<p>成功删除数据后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;total：总条数，pageSize：当前每一页的数量</span><br><span class="line">let totalPage &#x3D; Math.ceil((this.total - 1) &#x2F; this.pageSize) &#x2F;&#x2F; 总页数</span><br><span class="line">let currentPage &#x3D; this.currentPage &gt; totalPage ? totalPage : this.currentPage;&#x2F;&#x2F;定义需要改变的当前页</span><br><span class="line">this.currentPage &#x3D; currentPage &lt; 1 ? 1 : currentPage;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;重新请求列表数据</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>分页</tag>
+        <tag>删除</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自定义组件的 v-model</title>
     <url>/2020/01/11/2020-01-11/</url>
     <content><![CDATA[<p>自定义组件，添加 v-model<br>一个组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件</p>
@@ -686,6 +704,23 @@
         <tag>vue</tag>
         <tag>监听</tag>
         <tag>v-model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue $emit 传递多个参数</title>
+    <url>/2020/03/15/2020-03-15/</url>
+    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>emit</tag>
       </tags>
   </entry>
   <entry>
@@ -709,48 +744,6 @@
         <tag>vue</tag>
         <tag>过滤器</tag>
         <tag>filter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue $emit 传递多个参数</title>
-    <url>/2020/03/15/2020-03-15/</url>
-    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>emit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
-    <url>/2020/04/14/2020-04-04/</url>
-    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
-<a id="more"></a>
-
-<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
-
-<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
-<ul>
-<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
-</li>
-<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>calc</tag>
-        <tag>IE</tag>
       </tags>
   </entry>
   <entry>
@@ -823,6 +816,31 @@
       </tags>
   </entry>
   <entry>
+    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
+    <url>/2020/04/14/2020-04-04/</url>
+    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
+<a id="more"></a>
+
+<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
+
+<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
+<ul>
+<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
+</li>
+<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>calc</tag>
+        <tag>IE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Element Ui 滚动监听</title>
     <url>/2020/06/20/2020-06-20/</url>
     <content><![CDATA[<p><strong>需要对el-dialog弹窗进行滚动事件监听</strong></p>
@@ -865,6 +883,28 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo在macOS遇到的问题</title>
+    <url>/2021/03/08/2021-03-08/</url>
+    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端选中Excel文件后，解析并展示出来</title>
     <url>/2021/02/01/2021-02-01/</url>
     <content><![CDATA[<p><strong>需求：前端选中Excel文件后，先展示出来后再上传</strong></p>
@@ -890,28 +930,6 @@
       <tags>
         <tag>vue</tag>
         <tag>XLSX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo在macOS遇到的问题</title>
-    <url>/2021/03/08/2021-03-08/</url>
-    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
-
-<p>解决方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
