@@ -138,41 +138,6 @@
       </tags>
   </entry>
   <entry>
-    <title>call apply bind的用法</title>
-    <url>/2018/03/19/2018-03-19/</url>
-    <content><![CDATA[<p><strong>call apply bind修正this的指向。</strong></p>
-<ol>
-<li>call(参数一（对象）,参数二,参数三) 参数一：this指向的对象，参数二是实参</li>
-<li>apply(对象,[实参一，实参二]])) 两个参数：参数一this指向对象，参数二是数组，可传实参</li>
-<li>bind(参数一（对象）,参数二,参数三)();和call的用法基本一样，需主动调用函数</li>
-</ol>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;张三&#39;;</span><br><span class="line">var age &#x3D; &#39;18&#39;;</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &#39;李四&#39;,</span><br><span class="line">    age: 19,</span><br><span class="line">    showme: function () &#123;</span><br><span class="line">        console.log(this.name + &#39;今年&#39; + this.age + &#39;岁&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.showme();&#x2F;&#x2F;李四今年19岁：this指向obj</span><br><span class="line"></span><br><span class="line">var newobj &#x3D; &#123;</span><br><span class="line">    name: &#39;王五&#39;,</span><br><span class="line">    age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.showme.call(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.apply(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.bind(newobj)();&#x2F;&#x2F;王五今年20岁 this:newobj</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>call</tag>
-        <tag>apply</tag>
-        <tag>bind</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS hack</title>
-    <url>/2018/04/08/2018-04-08/</url>
-    <content><![CDATA[<p><strong>针对不同浏览器写不同的 CSS code 的过程就是 CSS hack。</strong></p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    width:300px;</span><br><span class="line">    height:300px;</span><br><span class="line">    background-color:blue; &#x2F;*firefox*&#x2F;</span><br><span class="line">    background-color:red\9; &#x2F;*all ie*&#x2F;</span><br><span class="line">    background-color:yellow; &#x2F;*ie8*&#x2F;</span><br><span class="line">    +background-color:pink; &#x2F;*ie7*&#x2F;</span><br><span class="line">    _background-color:orange; &#x2F;*ie6*&#x2F;    </span><br><span class="line">&#125;</span><br><span class="line">:root #test &#123; background-color:purple\9; &#125; &#x2F;*ie9*&#x2F;</span><br><span class="line">@media all and (min-width:0px)&#123; #test &#123; background&#x3D;color:black； &#125;&#125; &#x2F;*opera*&#x2F;</span><br><span class="line">@media screen and (-webkit-min-device-pixel-ratio:0)&#123; #test &#123; background-color: gray; &#125;&#125; &#x2F;*Chrome and safari*&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-        <tag>hack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript闭包</title>
     <url>/2018/03/11/2018-03-11/</url>
     <content><![CDATA[<p><strong>需求：获取内部变量</strong></p>
@@ -201,6 +166,41 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS hack</title>
+    <url>/2018/04/08/2018-04-08/</url>
+    <content><![CDATA[<p><strong>针对不同浏览器写不同的 CSS code 的过程就是 CSS hack。</strong></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    width:300px;</span><br><span class="line">    height:300px;</span><br><span class="line">    background-color:blue; &#x2F;*firefox*&#x2F;</span><br><span class="line">    background-color:red\9; &#x2F;*all ie*&#x2F;</span><br><span class="line">    background-color:yellow; &#x2F;*ie8*&#x2F;</span><br><span class="line">    +background-color:pink; &#x2F;*ie7*&#x2F;</span><br><span class="line">    _background-color:orange; &#x2F;*ie6*&#x2F;    </span><br><span class="line">&#125;</span><br><span class="line">:root #test &#123; background-color:purple\9; &#125; &#x2F;*ie9*&#x2F;</span><br><span class="line">@media all and (min-width:0px)&#123; #test &#123; background&#x3D;color:black； &#125;&#125; &#x2F;*opera*&#x2F;</span><br><span class="line">@media screen and (-webkit-min-device-pixel-ratio:0)&#123; #test &#123; background-color: gray; &#125;&#125; &#x2F;*Chrome and safari*&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>hack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>call apply bind的用法</title>
+    <url>/2018/03/19/2018-03-19/</url>
+    <content><![CDATA[<p><strong>call apply bind修正this的指向。</strong></p>
+<ol>
+<li>call(参数一（对象）,参数二,参数三) 参数一：this指向的对象，参数二是实参</li>
+<li>apply(对象,[实参一，实参二]])) 两个参数：参数一this指向对象，参数二是数组，可传实参</li>
+<li>bind(参数一（对象）,参数二,参数三)();和call的用法基本一样，需主动调用函数</li>
+</ol>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;张三&#39;;</span><br><span class="line">var age &#x3D; &#39;18&#39;;</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &#39;李四&#39;,</span><br><span class="line">    age: 19,</span><br><span class="line">    showme: function () &#123;</span><br><span class="line">        console.log(this.name + &#39;今年&#39; + this.age + &#39;岁&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.showme();&#x2F;&#x2F;李四今年19岁：this指向obj</span><br><span class="line"></span><br><span class="line">var newobj &#x3D; &#123;</span><br><span class="line">    name: &#39;王五&#39;,</span><br><span class="line">    age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.showme.call(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.apply(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.bind(newobj)();&#x2F;&#x2F;王五今年20岁 this:newobj</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>call</tag>
+        <tag>apply</tag>
+        <tag>bind</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS作用域</title>
     <url>/2018/04/21/2018-04-21/</url>
     <content><![CDATA[<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ol>
@@ -223,6 +223,32 @@
       </categories>
       <tags>
         <tag>作用域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS正则</title>
+    <url>/2018/04/02/2018-04-02/</url>
+    <content><![CDATA[<ol>
+<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<a id="more"></a>
+
+<ol start="3">
+<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
@@ -274,6 +300,35 @@
         <tag>Cookie</tag>
         <tag>LocalStorage</tag>
         <tag>sessionStorage</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的省略号</title>
+    <url>/2018/05/13/2018-05-13/</url>
+    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
+<ol>
+<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
+</ol>
+<a id="more"></a>
+
+<ol start="2">
+<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
+</li>
+<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
+</li>
+</ol>
+<p><strong>单行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>多行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>省略号</tag>
+        <tag>裁剪</tag>
       </tags>
   </entry>
   <entry>
@@ -400,24 +455,6 @@
       </tags>
   </entry>
   <entry>
-    <title>element-ui 表格数据格式化</title>
-    <url>/2019/07/20/2019-07-20/</url>
-    <content><![CDATA[<p><strong>element-ui 表格需要格式化内容后展示</strong></p>
-<h5 id="使用-element-表格的-formatter-属性"><a href="#使用-element-表格的-formatter-属性" class="headerlink" title="使用 element 表格的 formatter 属性"></a>使用 element 表格的 formatter 属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;status&quot; label&#x3D;&quot;状态&quot; :formatter&#x3D;&quot;formatStatus&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatStatus(row, column) &#123;</span><br><span class="line">        return row.status &#x3D;&#x3D;&#x3D; &quot;1&quot; ? &quot;成功&quot; : row.status &#x3D;&#x3D;&#x3D; &quot;0&quot; ? &quot;失败&quot; : &quot;&#x2F;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h5 id="使用-filters"><a href="#使用-filters" class="headerlink" title="使用 filters"></a>使用 filters</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;状态&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;&#123;row&#125;&quot;&gt;&#123;&#123;row.status | formatStatus&#125;&#125;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">filters: &#123;</span><br><span class="line">    &#x2F;&#x2F; 状态</span><br><span class="line">    formatStatus: function(status) &#123;</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;1&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;成功&quot;;</span><br><span class="line">        &#125; else if (status &#x3D;&#x3D;&#x3D; &quot;0&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;失败&quot;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            status &#x3D; &quot;&#x2F;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>filters</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>el-date-picker在清空时，控制台报错</title>
     <url>/2019/05/01/2019-05-01/</url>
     <content><![CDATA[<p><strong>问题：el-date-picker 在清空时，控制台报错</strong></p>
@@ -433,6 +470,57 @@
       <tags>
         <tag>element</tag>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>el-tooltip修改样式</title>
+    <url>/2019/05/19/2019-05-19/</url>
+    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
+<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VUE 定时请求接口数据</title>
+    <url>/2019/06/08/2019-06-08/</url>
+    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>element-ui 表格数据格式化</title>
+    <url>/2019/07/20/2019-07-20/</url>
+    <content><![CDATA[<p><strong>element-ui 表格需要格式化内容后展示</strong></p>
+<h5 id="使用-element-表格的-formatter-属性"><a href="#使用-element-表格的-formatter-属性" class="headerlink" title="使用 element 表格的 formatter 属性"></a>使用 element 表格的 formatter 属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;status&quot; label&#x3D;&quot;状态&quot; :formatter&#x3D;&quot;formatStatus&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatStatus(row, column) &#123;</span><br><span class="line">        return row.status &#x3D;&#x3D;&#x3D; &quot;1&quot; ? &quot;成功&quot; : row.status &#x3D;&#x3D;&#x3D; &quot;0&quot; ? &quot;失败&quot; : &quot;&#x2F;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h5 id="使用-filters"><a href="#使用-filters" class="headerlink" title="使用 filters"></a>使用 filters</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;状态&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;&#123;row&#125;&quot;&gt;&#123;&#123;row.status | formatStatus&#125;&#125;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">filters: &#123;</span><br><span class="line">    &#x2F;&#x2F; 状态</span><br><span class="line">    formatStatus: function(status) &#123;</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;1&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;成功&quot;;</span><br><span class="line">        &#125; else if (status &#x3D;&#x3D;&#x3D; &quot;0&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;失败&quot;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            status &#x3D; &quot;&#x2F;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>filters</tag>
       </tags>
   </entry>
   <entry>
@@ -458,35 +546,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的省略号</title>
-    <url>/2018/05/13/2018-05-13/</url>
-    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
-<ol>
-<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
-</ol>
-<a id="more"></a>
-
-<ol start="2">
-<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
-</li>
-<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
-</li>
-</ol>
-<p><strong>单行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>多行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>省略号</tag>
-        <tag>裁剪</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS的 &amp;&amp; 和 || 同时使用的思考</title>
     <url>/2019/08/11/2019-08-11/</url>
     <content><![CDATA[<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>&amp;&amp; 和 || 是没有优先级的，代码从左到右执行</strong></p>
@@ -506,48 +565,6 @@
       </categories>
       <tags>
         <tag>逻辑运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VUE 定时请求接口数据</title>
-    <url>/2019/06/08/2019-06-08/</url>
-    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS正则</title>
-    <url>/2018/04/02/2018-04-02/</url>
-    <content><![CDATA[<ol>
-<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<a id="more"></a>
-
-<ol start="3">
-<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
@@ -651,23 +668,6 @@
       </tags>
   </entry>
   <entry>
-    <title>el-tooltip修改样式</title>
-    <url>/2019/05/19/2019-05-19/</url>
-    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
-<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>删除当前页最后一条数据，页面还停留在当前页</title>
     <url>/2020/01/04/2020-01-04/</url>
     <content><![CDATA[<p>解决删除当前页最后一条数据，页面还停留在当前页的问题</p>
@@ -707,23 +707,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue $emit 传递多个参数</title>
-    <url>/2020/03/15/2020-03-15/</url>
-    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>emit</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>过滤器串联</title>
     <url>/2020/02/23/2020-02-23/</url>
     <content><![CDATA[<p><strong>过滤器可以串联</strong></p>
@@ -744,6 +727,48 @@
         <tag>vue</tag>
         <tag>过滤器</tag>
         <tag>filter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue $emit 传递多个参数</title>
+    <url>/2020/03/15/2020-03-15/</url>
+    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>emit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
+    <url>/2020/04/14/2020-04-04/</url>
+    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
+<a id="more"></a>
+
+<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
+
+<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
+<ul>
+<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
+</li>
+<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>calc</tag>
+        <tag>IE</tag>
       </tags>
   </entry>
   <entry>
@@ -816,46 +841,102 @@
       </tags>
   </entry>
   <entry>
-    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
-    <url>/2020/04/14/2020-04-04/</url>
-    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
+    <title>前端选中Excel文件后，解析并展示出来</title>
+    <url>/2021/02/01/2021-02-01/</url>
+    <content><![CDATA[<p><strong>需求：前端选中Excel文件后，先展示出来后再上传</strong></p>
+<h4 id="安装xlsx"><a href="#安装xlsx" class="headerlink" title="安装xlsx"></a>安装xlsx</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S xlsx</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
+<h4 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h4><p>这里选择文件用的el-upload</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-upload</span><br><span class="line">  ref&#x3D;&quot;upload&quot;</span><br><span class="line">  action&#x3D;&quot;&quot;</span><br><span class="line">  accept&#x3D;&quot;.xls,.xlsx&quot;</span><br><span class="line">  :file-list&#x3D;&quot;fileList&quot;</span><br><span class="line">  :show-file-list&#x3D;&quot;false&quot;</span><br><span class="line">  :auto-upload&#x3D;&quot;false&quot;</span><br><span class="line">  :multiple&#x3D;&quot;false&quot;</span><br><span class="line">  :on-change&#x3D;&quot;onChange&quot;</span><br><span class="line">  :http-request&#x3D;&quot;uploadFile&quot;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;el-button slot&#x3D;&quot;trigger&quot; size&#x3D;&quot;small&quot; type&#x3D;&quot;primary&quot;&gt;</span><br><span class="line">    选取文件</span><br><span class="line">  &lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;el-upload&gt;</span><br></pre></td></tr></table></figure>
 
-<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
-<ul>
-<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
-</li>
-<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
-</li>
-</ul>
+<h4 id="展示文件里的数据"><a href="#展示文件里的数据" class="headerlink" title="展示文件里的数据"></a>展示文件里的数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tabelListData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userName&quot; label&#x3D;&quot;用户名&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;displayName&quot; label&#x3D;&quot;昵称&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userRole&quot; label&#x3D;&quot;角色&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;phoneNum&quot; label&#x3D;&quot;手机号&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;passWord&quot; label&#x3D;&quot;密码&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="选择文件-1"><a href="#选择文件-1" class="headerlink" title="选择文件"></a>选择文件</h4><p>在选择文件夹的组件引入xlsx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;引入xlsx</span><br><span class="line">import XLSX from &quot;xlsx&quot;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 选择文件</span><br><span class="line">onChange(file, filelist) &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(file)</span><br><span class="line">  const fileReader &#x3D; new FileReader();</span><br><span class="line">  fileReader.onload &#x3D; (ev) &#x3D;&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      const data &#x3D; ev.target.result;</span><br><span class="line">      const workbook &#x3D; XLSX.read(data, &#123;</span><br><span class="line">        type: &#39;binary&#39;</span><br><span class="line">      &#125;);</span><br><span class="line">      for (let sheet in workbook.Sheets) &#123;</span><br><span class="line">        &#x2F;&#x2F;循环读取每个工作簿</span><br><span class="line">        const sheetArray &#x3D; XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);</span><br><span class="line">        &#x2F;&#x2F;若当前sheet没有数据，则continue</span><br><span class="line">        if (sheetArray.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&quot;读取文件&quot;);</span><br><span class="line">        console.log(sheetArray);</span><br><span class="line">         sheetArray.map(item &#x3D;&gt; &#123;</span><br><span class="line">          this.tabelListData.push(&#123;</span><br><span class="line">            userName: item[&quot;用户名&quot;],</span><br><span class="line">            displayName: item[&quot;昵称&quot;],</span><br><span class="line">            userRole: item[&quot;角色&quot;],</span><br><span class="line">            phoneNum: item[&quot;手机号&quot;],</span><br><span class="line">            passWord: item[&quot;密码&quot;]</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">      this.$message.warning(&#39;文件类型不正确！&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  &#x2F;&#x2F;注意这里，有些blog写的不一样，根据情况可修改</span><br><span class="line">  fileReader.readAsBinaryString(file.raw);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>上传操作略。</p>
 ]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>calc</tag>
-        <tag>IE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Element Ui 滚动监听</title>
-    <url>/2020/06/20/2020-06-20/</url>
-    <content><![CDATA[<p><strong>需要对el-dialog弹窗进行滚动事件监听</strong></p>
-<a id="more"></a>
-
-<h5 id="添加监听事件"><a href="#添加监听事件" class="headerlink" title="添加监听事件"></a>添加监听事件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-button type&#x3D;&quot;primary&quot; @click&#x3D;&quot;create&quot;&gt;确认&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;el-dialog</span><br><span class="line">      :title&#x3D;&quot;ruleTitle&quot;</span><br><span class="line">      :visible.sync&#x3D;&quot;showRule&quot;</span><br><span class="line">      width&#x3D;&quot;70%&quot;</span><br><span class="line">      :append-to-body&#x3D;&quot;true&quot;</span><br><span class="line">      :before-close&#x3D;&quot;handleClose&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&lt;&#x2F;el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;el-dialog出现之后进行监听</span><br><span class="line">create()&#123;</span><br><span class="line">    this.showRule&#x3D;true;</span><br><span class="line">    this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">        document.addEventListener(&#39;scroll&#39;, this.handleScroll, true);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F;监听滚动</span><br><span class="line">handleScroll() &#123;</span><br><span class="line">  let sch &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollHeight;&#x2F;&#x2F;内容的高度</span><br><span class="line">  let cih &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].clientHeight;&#x2F;&#x2F;框的高度,固定的</span><br><span class="line">  let sct &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollTop;&#x2F;&#x2F;滚动的高度</span><br><span class="line">  &#x2F;&#x2F; console.log(sch, cih, sct);</span><br><span class="line">  if (sct &gt;&#x3D; sch - cih) &#123;</span><br><span class="line">    &#x2F;&#x2F;滚动条拉到底部了，在这里做一些事情</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在el-dialog关闭之前删除监听</span><br><span class="line">handleClose(done) &#123;</span><br><span class="line">  document.removeEventListener(&quot;scroll&quot;, this.handleScroll, true);</span><br><span class="line">  done();</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="设置-el-dialog-body-滚动条"><a href="#设置-el-dialog-body-滚动条" class="headerlink" title="设置.el-dialog__body 滚动条"></a>设置.el-dialog__body 滚动条</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;deep&#x2F; &#123;</span><br><span class="line">  .el-dialog &#123;</span><br><span class="line">    margin: 60px auto !important;</span><br><span class="line">    max-height: 550px;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    .el-dialog__body &#123;</span><br><span class="line">      max-height: 400px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue</category>
       </categories>
       <tags>
-        <tag>element</tag>
+        <tag>vue</tag>
+        <tag>XLSX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo在macOS遇到的问题</title>
+    <url>/2021/03/08/2021-03-08/</url>
+    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 transformRequest 格式化参数</title>
+    <url>/2021/04/10/2021-04-10/</url>
+    <content><![CDATA[<p><strong>需求：某个参数需要传入多个的情况</strong></p>
+<p>选择器是多选的情况，多选的数据是一个数组，直接将数组入参，无法达到效果。<br>开始想到的方法是将数据进行拼接，后面想到可以使用transformRequest方法进行参数格式化，方便其他地方调用</p>
+<a id="more"></a>
+
+<p><strong>方式一：拼接</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D;&quot;&quot;</span><br><span class="line">this.selectValue.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">    params +&#x3D; &#96;member&#x3D;$&#123;item&#125;&amp;&#96;</span><br><span class="line">&#125;);</span><br><span class="line">params +&#x3D; &#96;teamId&#x3D;$&#123;this.teamId&#125;&#96;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
+
+<p>封装的方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postRequest &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：transformRequest方法进行参数格式化</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D; &#123;</span><br><span class="line">    member: this.selectValue,</span><br><span class="line">    teamId: this.teamId</span><br><span class="line">&#125;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
+
+<p>封装的方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postStrReq &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        transformRequest: [function (data) &#123;</span><br><span class="line">            let ret &#x3D; &#39;&#39;;</span><br><span class="line">            for (let it in data) &#123;</span><br><span class="line">                ret +&#x3D; encodeURIComponent(it) + &#39;&#x3D;&#39; + encodeURIComponent(data[it]) + &#39;&amp;&#39;;</span><br><span class="line">            &#125;</span><br><span class="line">            return ret.slice(0, -1);</span><br><span class="line">        &#125;],</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
         <tag>vue</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2018/01/23/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>vue3.0 子组件调用父组件的方法</title>
@@ -883,73 +964,20 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo在macOS遇到的问题</title>
-    <url>/2021/03/08/2021-03-08/</url>
-    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
-
+    <title>Element Ui 滚动监听</title>
+    <url>/2020/06/20/2020-06-20/</url>
+    <content><![CDATA[<p><strong>需要对el-dialog弹窗进行滚动事件监听</strong></p>
 <a id="more"></a>
 
-<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h5 id="添加监听事件"><a href="#添加监听事件" class="headerlink" title="添加监听事件"></a>添加监听事件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-button type&#x3D;&quot;primary&quot; @click&#x3D;&quot;create&quot;&gt;确认&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;el-dialog</span><br><span class="line">      :title&#x3D;&quot;ruleTitle&quot;</span><br><span class="line">      :visible.sync&#x3D;&quot;showRule&quot;</span><br><span class="line">      width&#x3D;&quot;70%&quot;</span><br><span class="line">      :append-to-body&#x3D;&quot;true&quot;</span><br><span class="line">      :before-close&#x3D;&quot;handleClose&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&lt;&#x2F;el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;el-dialog出现之后进行监听</span><br><span class="line">create()&#123;</span><br><span class="line">    this.showRule&#x3D;true;</span><br><span class="line">    this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">        document.addEventListener(&#39;scroll&#39;, this.handleScroll, true);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F;监听滚动</span><br><span class="line">handleScroll() &#123;</span><br><span class="line">  let sch &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollHeight;&#x2F;&#x2F;内容的高度</span><br><span class="line">  let cih &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].clientHeight;&#x2F;&#x2F;框的高度,固定的</span><br><span class="line">  let sct &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollTop;&#x2F;&#x2F;滚动的高度</span><br><span class="line">  &#x2F;&#x2F; console.log(sch, cih, sct);</span><br><span class="line">  if (sct &gt;&#x3D; sch - cih) &#123;</span><br><span class="line">    &#x2F;&#x2F;滚动条拉到底部了，在这里做一些事情</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在el-dialog关闭之前删除监听</span><br><span class="line">handleClose(done) &#123;</span><br><span class="line">  document.removeEventListener(&quot;scroll&quot;, this.handleScroll, true);</span><br><span class="line">  done();</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
-
-<p>解决方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端选中Excel文件后，解析并展示出来</title>
-    <url>/2021/02/01/2021-02-01/</url>
-    <content><![CDATA[<p><strong>需求：前端选中Excel文件后，先展示出来后再上传</strong></p>
-<h4 id="安装xlsx"><a href="#安装xlsx" class="headerlink" title="安装xlsx"></a>安装xlsx</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S xlsx</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h4 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h4><p>这里选择文件用的el-upload</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-upload</span><br><span class="line">  ref&#x3D;&quot;upload&quot;</span><br><span class="line">  action&#x3D;&quot;&quot;</span><br><span class="line">  accept&#x3D;&quot;.xls,.xlsx&quot;</span><br><span class="line">  :file-list&#x3D;&quot;fileList&quot;</span><br><span class="line">  :show-file-list&#x3D;&quot;false&quot;</span><br><span class="line">  :auto-upload&#x3D;&quot;false&quot;</span><br><span class="line">  :multiple&#x3D;&quot;false&quot;</span><br><span class="line">  :on-change&#x3D;&quot;onChange&quot;</span><br><span class="line">  :http-request&#x3D;&quot;uploadFile&quot;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;el-button slot&#x3D;&quot;trigger&quot; size&#x3D;&quot;small&quot; type&#x3D;&quot;primary&quot;&gt;</span><br><span class="line">    选取文件</span><br><span class="line">  &lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;el-upload&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="展示文件里的数据"><a href="#展示文件里的数据" class="headerlink" title="展示文件里的数据"></a>展示文件里的数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tabelListData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userName&quot; label&#x3D;&quot;用户名&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;displayName&quot; label&#x3D;&quot;昵称&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userRole&quot; label&#x3D;&quot;角色&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;phoneNum&quot; label&#x3D;&quot;手机号&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;passWord&quot; label&#x3D;&quot;密码&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="选择文件-1"><a href="#选择文件-1" class="headerlink" title="选择文件"></a>选择文件</h4><p>在选择文件夹的组件引入xlsx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;引入xlsx</span><br><span class="line">import XLSX from &quot;xlsx&quot;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 选择文件</span><br><span class="line">onChange(file, filelist) &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(file)</span><br><span class="line">  const fileReader &#x3D; new FileReader();</span><br><span class="line">  fileReader.onload &#x3D; (ev) &#x3D;&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      const data &#x3D; ev.target.result;</span><br><span class="line">      const workbook &#x3D; XLSX.read(data, &#123;</span><br><span class="line">        type: &#39;binary&#39;</span><br><span class="line">      &#125;);</span><br><span class="line">      for (let sheet in workbook.Sheets) &#123;</span><br><span class="line">        &#x2F;&#x2F;循环读取每个工作簿</span><br><span class="line">        const sheetArray &#x3D; XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);</span><br><span class="line">        &#x2F;&#x2F;若当前sheet没有数据，则continue</span><br><span class="line">        if (sheetArray.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&quot;读取文件&quot;);</span><br><span class="line">        console.log(sheetArray);</span><br><span class="line">         sheetArray.map(item &#x3D;&gt; &#123;</span><br><span class="line">          this.tabelListData.push(&#123;</span><br><span class="line">            userName: item[&quot;用户名&quot;],</span><br><span class="line">            displayName: item[&quot;昵称&quot;],</span><br><span class="line">            userRole: item[&quot;角色&quot;],</span><br><span class="line">            phoneNum: item[&quot;手机号&quot;],</span><br><span class="line">            passWord: item[&quot;密码&quot;]</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">      this.$message.warning(&#39;文件类型不正确！&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  &#x2F;&#x2F;注意这里，有点blog不一样，根据情况可修改</span><br><span class="line">  fileReader.readAsBinaryString(file.raw);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>上传操作略。</p>
-]]></content>
+<h5 id="设置-el-dialog-body-滚动条"><a href="#设置-el-dialog-body-滚动条" class="headerlink" title="设置.el-dialog__body 滚动条"></a>设置.el-dialog__body 滚动条</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;deep&#x2F; &#123;</span><br><span class="line">  .el-dialog &#123;</span><br><span class="line">    margin: 60px auto !important;</span><br><span class="line">    max-height: 550px;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    .el-dialog__body &#123;</span><br><span class="line">      max-height: 400px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue</category>
       </categories>
       <tags>
+        <tag>element</tag>
         <tag>vue</tag>
-        <tag>XLSX</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2018/01/23/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
