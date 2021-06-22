@@ -28,7 +28,7 @@
 <meta property="og:description" content="Vue项目中使用svg小图标">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-08T04:28:10.000Z">
-<meta property="article:modified_time" content="2021-06-22T07:59:53.815Z">
+<meta property="article:modified_time" content="2021-06-22T08:38:08.122Z">
 <meta property="article:author" content="赖霹雳">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="svg">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-22 15:59:53" itemprop="dateModified" datetime="2021-06-22T15:59:53+08:00">2021-06-22</time>
+                <time title="修改时间：2021-06-22 16:38:08" itemprop="dateModified" datetime="2021-06-22T16:38:08+08:00">2021-06-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,18 +254,21 @@
 </li>
 </ul>
 <h3 id="注册SvgIcon为全局组件"><a href="#注册SvgIcon为全局组件" class="headerlink" title="注册SvgIcon为全局组件"></a>注册SvgIcon为全局组件</h3><ul>
-<li>在src/assets创建svg文件夹，里面放svg图片和一个index.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index.js</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import SvgIcon from &#39;@&#x2F;components&#x2F;SvgIcon&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 全局注册组件</span><br><span class="line">Vue.component(&#39;svg-icon&#39;, SvgIcon)</span><br><span class="line">&#x2F;&#x2F; 定义一个加载目录的函数</span><br><span class="line">const requireAll &#x3D; requireContext &#x3D;&gt; requireContext.keys().map(requireContext)</span><br><span class="line">const req &#x3D; require.context(&#39;@&#x2F;assets&#x2F;svg&#39;, false, &#x2F;\.svg$&#x2F;)</span><br><span class="line">&#x2F;&#x2F; 加载目录下的所有 svg 文件</span><br><span class="line">requireAll(req)</span><br></pre></td></tr></table></figure>
+<li>在/src/assets创建svg文件夹，里面放svg图片和一个index.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index.js</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import SvgIcon from &#39;@&#x2F;components&#x2F;SvgIcon&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 全局注册组件</span><br><span class="line">Vue.component(&#39;svg-icon&#39;, SvgIcon)</span><br><span class="line">&#x2F;&#x2F; 定义一个加载目录的函数</span><br><span class="line">const requireAll &#x3D; requireContext &#x3D;&gt; requireContext.keys().map(requireContext)</span><br><span class="line">const req &#x3D; require.context(&#39;@&#x2F;assets&#x2F;svg&#39;, false, &#x2F;\.svg$&#x2F;)</span><br><span class="line">&#x2F;&#x2F; 加载目录下的所有 svg 文件</span><br><span class="line">requireAll(req)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
 <li>main.js引入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 引入svg</span><br><span class="line">import &#39;.&#x2F;assets&#x2F;svg&#39;;</span><br></pre></td></tr></table></figure></li>
-<li>组件调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;class-name:可设置颜色，大小；icon-class:svg图片的名字</span><br><span class="line">&#x2F;&#x2F;如果颜色无效，需要将svg的fill的值设置为空“fill&#x3D;&quot;&quot;”</span><br><span class="line">&lt;svg-icon class-name&#x3D;&quot;quanbu&quot; icon-class&#x3D;&quot;quanbu&quot;&gt;&lt;&#x2F;svg-icon&gt;</span><br></pre></td></tr></table></figure>
-
+<li>组件调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;class-name:可设置颜色，大小；icon-class:svg图片的名字</span><br><span class="line">&#x2F;&#x2F;如果颜色无效，需要将svg的fill的值设置为空“fill&#x3D;&quot;&quot;”</span><br><span class="line">&lt;svg-icon class-name&#x3D;&quot;quanbu&quot; icon-class&#x3D;&quot;quanbu&quot;&gt;&lt;&#x2F;svg-icon&gt;</span><br></pre></td></tr></table></figure></li>
+<li>同时使用阿里的iconfont</li>
+</ol>
+<ul>
+<li>在项目设置里FontClass/Symbol 前缀不设置（因为默认值icon-），下载到本地放在/assets/iconfonts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;main.js引入后，跟自己的svg图片一样使用</span><br><span class="line">import &quot;.&#x2F;assets&#x2F;iconfonts&#x2F;iconfont.js&quot;;</span><br></pre></td></tr></table></figure>
 
 
 </li>
-</ol>
+</ul>
 
     </div>
 

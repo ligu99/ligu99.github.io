@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>src 与 href</title>
+    <url>/2018/02/17/2018-02-17/</url>
+    <content><![CDATA[<p><strong>src 用于替换当前元素， href 用于在当前文档和应用资源之间建立联系。</strong></p>
+<a id="more"></a>
+<p>src 是 srouce 的缩写，指向外部资源的位置，指向的内容和将会嵌入到文档中当前标签所在位置，在请求 src 资源时会将其指向的资源下载并应用到文档内，例如 js 脚本，img 图片和frame 等元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src &#x3D; &quot;js.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也是如此，类似于将所指向资源嵌入当前标签内，这也是为什么将js脚本放在底部而不是头部。</p>
+<p>href 是 Hypertext Reference 的缩写，指向网络资源所在的位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，如果在文档中添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;link href &#x3D; &quot;common.css&quot; rel&#x3D;&quot;stylesheet&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>那么浏览器会识别该文档为 css 文件，就会并行下载资源并且不会停止对当前文档的处理。这也是为什么建议使用link 方式来加载 css,也不是使用 @import 方式</p>
+]]></content>
+      <categories>
+        <category>html</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>跨域</title>
     <url>/2018/02/19/2018-02-19/</url>
     <content><![CDATA[<p><strong>越过浏览器的同源策略，拿到不同域的资源，这个过程就是跨域。</strong></p>
@@ -26,22 +45,64 @@
       </tags>
   </entry>
   <entry>
-    <title>src 与 href</title>
-    <url>/2018/02/17/2018-02-17/</url>
-    <content><![CDATA[<p><strong>src 用于替换当前元素， href 用于在当前文档和应用资源之间建立联系。</strong></p>
+    <title>call apply bind的用法</title>
+    <url>/2018/03/19/2018-03-19/</url>
+    <content><![CDATA[<p><strong>call apply bind修正this的指向。</strong></p>
+<ol>
+<li>call(参数一（对象）,参数二,参数三) 参数一：this指向的对象，参数二是实参</li>
+<li>apply(对象,[实参一，实参二]])) 两个参数：参数一this指向对象，参数二是数组，可传实参</li>
+<li>bind(参数一（对象）,参数二,参数三)();和call的用法基本一样，需主动调用函数</li>
+</ol>
 <a id="more"></a>
-<p>src 是 srouce 的缩写，指向外部资源的位置，指向的内容和将会嵌入到文档中当前标签所在位置，在请求 src 资源时会将其指向的资源下载并应用到文档内，例如 js 脚本，img 图片和frame 等元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src &#x3D; &quot;js.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也是如此，类似于将所指向资源嵌入当前标签内，这也是为什么将js脚本放在底部而不是头部。</p>
-<p>href 是 Hypertext Reference 的缩写，指向网络资源所在的位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，如果在文档中添加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;link href &#x3D; &quot;common.css&quot; rel&#x3D;&quot;stylesheet&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-<p>那么浏览器会识别该文档为 css 文件，就会并行下载资源并且不会停止对当前文档的处理。这也是为什么建议使用link 方式来加载 css,也不是使用 @import 方式</p>
-]]></content>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;张三&#39;;</span><br><span class="line">var age &#x3D; &#39;18&#39;;</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &#39;李四&#39;,</span><br><span class="line">    age: 19,</span><br><span class="line">    showme: function () &#123;</span><br><span class="line">        console.log(this.name + &#39;今年&#39; + this.age + &#39;岁&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.showme();&#x2F;&#x2F;李四今年19岁：this指向obj</span><br><span class="line"></span><br><span class="line">var newobj &#x3D; &#123;</span><br><span class="line">    name: &#39;王五&#39;,</span><br><span class="line">    age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.showme.call(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.apply(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.bind(newobj)();&#x2F;&#x2F;王五今年20岁 this:newobj</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>html</category>
+        <category>js</category>
       </categories>
       <tags>
-        <tag>js</tag>
+        <tag>call</tag>
+        <tag>apply</tag>
+        <tag>bind</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS正则</title>
+    <url>/2018/04/02/2018-04-02/</url>
+    <content><![CDATA[<ol>
+<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<a id="more"></a>
+
+<ol start="3">
+<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>正则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS hack</title>
+    <url>/2018/04/08/2018-04-08/</url>
+    <content><![CDATA[<p><strong>针对不同浏览器写不同的 CSS code 的过程就是 CSS hack。</strong></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    width:300px;</span><br><span class="line">    height:300px;</span><br><span class="line">    background-color:blue; &#x2F;*firefox*&#x2F;</span><br><span class="line">    background-color:red\9; &#x2F;*all ie*&#x2F;</span><br><span class="line">    background-color:yellow; &#x2F;*ie8*&#x2F;</span><br><span class="line">    +background-color:pink; &#x2F;*ie7*&#x2F;</span><br><span class="line">    _background-color:orange; &#x2F;*ie6*&#x2F;    </span><br><span class="line">&#125;</span><br><span class="line">:root #test &#123; background-color:purple\9; &#125; &#x2F;*ie9*&#x2F;</span><br><span class="line">@media all and (min-width:0px)&#123; #test &#123; background&#x3D;color:black； &#125;&#125; &#x2F;*opera*&#x2F;</span><br><span class="line">@media screen and (-webkit-min-device-pixel-ratio:0)&#123; #test &#123; background-color: gray; &#125;&#125; &#x2F;*Chrome and safari*&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>hack</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -71,6 +132,818 @@
         <tag>js</tag>
         <tag>闭包</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Cookie LocalStorage sessionStorage</title>
+    <url>/2018/05/02/2018-05-02/</url>
+    <content><![CDATA[<h5 id="数据的生命周期"><a href="#数据的生命周期" class="headerlink" title="数据的生命周期"></a>数据的生命周期</h5><ol>
+<li>Cookie 一般由服务器生成，可设置失效时间，如果在浏览器端生成 Cookie，默认是关闭浏览器后失效</li>
+<li>LocalStorage 除非被清除，否则永远保存</li>
+<li>sessionStorage 仅在当前会话下有效，关闭页面或浏览器后被清除</li>
+</ol>
+<a id="more"></a>
+
+<h5 id="存放数据大小"><a href="#存放数据大小" class="headerlink" title="存放数据大小"></a>存放数据大小</h5><ol>
+<li>Cookie 4K 左右</li>
+<li>LocalStorage 一般为 5MB</li>
+<li>sessionStorage 一般为 5MB</li>
+</ol>
+<h5 id="与服务器端通信"><a href="#与服务器端通信" class="headerlink" title="与服务器端通信"></a>与服务器端通信</h5><ol>
+<li>Cookie 每次都会携带在 HTTP 头中，如果使用 Cookie 保存过多数据会带来性问题</li>
+<li>LocalStorage sessionStorage 仅在客户端（浏览器）中保存，不参与和服务器的通信</li>
+</ol>
+<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5><ol>
+<li>cookie 数据始终在同源的 http 请求中携带（即使不需要），即 cookie 在浏览器和服务器间来回传递，而 sessionStorage 和 localStorage 不会自动把数据发送给服务器，仅在本地保存。cookie 数据还有路径 path 的概念，可以限制 cookie 只属于某个路径下</li>
+<li>存储大小限制也不同，cookie 数据不能超过 4K，同时因为每次 http 请求都会携带 cookie、所以 cookie 只适合保存很小的数据，如会话标识。sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大</li>
+<li>数据有效期不同</li>
+</ol>
+<ul>
+<li>sessionStorage：仅在当前浏览器窗口关闭之前有效</li>
+<li>localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据</li>
+<li>cookie：只在设置的 cookie 过期时间之前有效，即使窗口关闭或浏览器关闭</li>
+</ul>
+<ol start="4">
+<li>作用域不同<br>sessionStorage 不在不同的浏览器窗口中共享<br>即使是同一个页面 localstorage 在所有同源窗口中都是共享的<br>cookie 也是在所有同源窗口中都是共享的</li>
+</ol>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><ol>
+<li>Cookie</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.cookie &#x3D; name+&#39;&#x3D;&#39;+value[;expires&#x3D;date][;path&#x3D;路径][;domain&#x3D;域名]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>localStorage(永久的)sessionStorage(临时的)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setItem(key,val) &#x2F;&#x2F;设置</span><br><span class="line">getItem(key) &#x2F;&#x2F;获取</span><br><span class="line">removeItem(key) &#x2F;&#x2F;删除</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage</span><br><span class="line">localStorage.setItem(key,val)</span><br><span class="line">localStorage.getItem(key)</span><br><span class="line">localStorage.removeItem(key)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;sessionStorage</span><br><span class="line">sessionStorage.setItem(key,val)</span><br><span class="line">sessionStorage.getItem(key)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>缓存</tag>
+        <tag>Cookie</tag>
+        <tag>LocalStorage</tag>
+        <tag>sessionStorage</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS作用域</title>
+    <url>/2018/04/21/2018-04-21/</url>
+    <content><![CDATA[<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ol>
+<li>全局作用域：函数外部的作用域</li>
+<li>局部作用域：函数内部的作用域</li>
+</ol>
+<a id="more"></a>
+
+<h5 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var outer &#x3D; &#39;outer&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    console.log(outer);</span><br><span class="line">&#125;</span><br><span class="line">fn(); &#x2F;&#x2F;outer</span><br></pre></td></tr></table></figure>
+
+<h5 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    var inner&#x3D; &#39;inner&#39;;</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br><span class="line">console.log(inner); &#x2F;&#x2F;undefined</span><br></pre></td></tr></table></figure>
+
+<h5 id="变量提前声明"><a href="#变量提前声明" class="headerlink" title="变量提前声明"></a>变量提前声明</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var global &#x3D; &#39;global&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;undefined</span><br><span class="line">    var global &#x3D; &#39;newGlobal&#39;;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;newGlobal</span><br><span class="line">&#125;</span><br><span class="line">console.log(global); &#x2F;&#x2F;global</span><br></pre></td></tr></table></figure>
+
+<p>相当于:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var global &#x3D; &#39;global&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    var global; &#x2F;&#x2F;提前声明了局部变量；</span><br><span class="line">    console.log(global); &#x2F;&#x2F;undefined</span><br><span class="line">    var global &#x3D; &#39;newGlobal&#39;;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;newGlobal</span><br><span class="line">&#125;</span><br><span class="line">console.log(global); &#x2F;&#x2F;global</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>作用域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios 发 post 请求问题</title>
+    <url>/2018/06/02/2018-06-02/</url>
+    <content><![CDATA[<p><strong>axios post 请求</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  method: &#39;post&#39;,</span><br><span class="line">  url: &#39;&#x2F;user&#x2F;12345&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &quot;username&quot;: &quot;admin&quot;,</span><br><span class="line">    &quot;pwd&quot;: &quot;admin&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>结果：后台没有接收到传参</p>
+<a id="more"></a>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Qs from &#39;qs&#39;</span><br><span class="line">let data &#x3D; &#123;</span><br><span class="line">    &quot;username&quot;: &quot;admin&quot;,</span><br><span class="line">    &quot;pwd&quot;: &quot;admin&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">    method: &#39;post&#39;,</span><br><span class="line">    url: &#39;&#x2F;user&#x2F;12345&#39;,</span><br><span class="line">    data: Qs.stringify(data),</span><br><span class="line">    headers: &#123; &quot;Content-Type&quot;: &quot;application&#x2F;x-www-form-urlencoded&quot; &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>原因</strong><br>HTTP 请求中的 get 请求和 post 请求参数的存放位置是不一样的，get 请求的参数以键值对的方式跟在 url 后面的，而 post 请求的参数是以键值对的方式在请求体里的。<br>GET 方法传递参数时使用的是 params，是以/user?ID=1&amp;name=mike&amp;sex=male 形式传递的<br>使用 POST 时对应的传参使用的是 data，是{ “name” : “mike”, “sex” : “male” }<br>为何要设置请求头里的’Content-Type’：<br>因为 axios 默认的 content-type 是 application/json，具体怎么传，取决于后端要怎么接受数据。</p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+        <tag>post</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6的新增语法</title>
+    <url>/2018/06/10/2018-06-10/</url>
+    <content><![CDATA[<h5 id="let"><a href="#let" class="headerlink" title="let"></a>let</h5><p>变量声明不会提前<br>块级作用域<br>let 不允许相同作用域内多次声明同一变量</p>
+<a id="more"></a>
+
+<h5 id="const"><a href="#const" class="headerlink" title="const"></a>const</h5><p>声明常量，声明后不能再修改值<br>变量声明不会提前<br>块级作用域<br>const 不允许相同作用域内多次声明同一变量<br>声明后无法修改值 3. let、const、var 的区别</p>
+<ul>
+<li>使用 var 声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象。</li>
+<li>使用 let 声明的变量，其作用域为该语句所在的代码块内，不存在变量提升。</li>
+<li>使用 const 声明的是常量，在后面出现的代码中不能再修改该常量的值。</li>
+</ul>
+<h5 id="解构与赋值"><a href="#解构与赋值" class="headerlink" title="解构与赋值"></a>解构与赋值</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;const &#123; name, age &#125; &#x3D; res.data.data</span><br><span class="line">&#x2F;&#x2F;const &#123; data: &#123;name, age &#125; &#125; &#x3D; res.data</span><br><span class="line">const &#123; data: &#123; data: &#123; name, age&#125; &#125; &#125; &#x3D; res</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数组解构</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let [a, b, c] &#x3D; [1, 2, 3]</span><br><span class="line">console.log(a) &#x2F;&#x2F; 1</span><br><span class="line">console.log(b) &#x2F;&#x2F;2</span><br><span class="line">console.log(c) &#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对象解构</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let obj &#x3D; &#123;</span><br><span class="line">    name: &#39;test&#39;,</span><br><span class="line">    adr: &#39;testAddress&#39;</span><br><span class="line">&#125;</span><br><span class="line">let &#123;</span><br><span class="line">    name,</span><br><span class="line">    adr</span><br><span class="line">&#125; &#x3D; obj; &#x2F;&#x2F;取的变量名要和属性名一致,否则解构失败</span><br><span class="line">console.log(name, adr );&#x2F;&#x2F;test testAddress</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ES6 解构并重命名：属性名:新名字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let &#123;</span><br><span class="line">    name: username,</span><br><span class="line">    adr</span><br><span class="line">&#125; &#x3D; obj;</span><br><span class="line">console.log(username, adr);&#x2F;&#x2F;test testAddress</span><br></pre></td></tr></table></figure>
+
+<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>形参只有一个的时候，可以省略圆括号<br>如果只有一个语句，并且 return 的时候，就可以省略花括号<br>箭头函数都可以省略 function</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;普通函数：只有一个形参</span><br><span class="line">function show1(a) &#123;</span><br><span class="line">    return a + 1;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：只有一个形参</span><br><span class="line">let show2 &#x3D; a &#x3D;&gt; a + 1;</span><br><span class="line">console.log(show1(1),show2(1));&#x2F;&#x2F;2 2</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;普通函数：没有形参</span><br><span class="line">function show3() &#123;</span><br><span class="line">    return 666;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：没有形参</span><br><span class="line">let show4 &#x3D; () &#x3D;&gt; 666;</span><br><span class="line">console.log(show3(), show4());&#x2F;&#x2F;666 666</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;普通函数：多个形参</span><br><span class="line">function show5(a, b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：多个形参</span><br><span class="line">let show6 &#x3D; (a, b) &#x3D;&gt; a + b;</span><br><span class="line">console.log(show5(3,3),show6(333,333));&#x2F;&#x2F;6 666</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;箭头函数里面没有this：指向外层的this</span><br><span class="line">btn.onclick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(this);&#x2F;&#x2F;window</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    age: 20,</span><br><span class="line">    say: () &#x3D;&gt; &#123;</span><br><span class="line">        console.log(this.age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.say() &#x2F;&#x2F;undefined,因为指向的是window</span><br></pre></td></tr></table></figure>
+
+<h5 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var b &#x3D; 10;</span><br><span class="line">console.log(&#96;Fifteen is $&#123;a + b&#125; and</span><br><span class="line">not $&#123;2 * a + b&#125;.&#96;);</span><br><span class="line">&#x2F;&#x2F; &quot;Fifteen is 15 and</span><br><span class="line">&#x2F;&#x2F; not 20.&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="扩展运算符（…）"><a href="#扩展运算符（…）" class="headerlink" title="扩展运算符（…）"></a>扩展运算符（…）</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr1 &#x3D; [1, 2];</span><br><span class="line">let arr2 &#x3D; [3, 4];</span><br><span class="line">let newarr &#x3D; [...arr1, ...arr2];</span><br><span class="line">console.log(newarr) &#x2F;&#x2F;[1, 2, 3, 4]</span><br><span class="line">function add(...vals)&#123;</span><br><span class="line">  let sum&#x3D;0;</span><br><span class="line">  for(let i&#x3D;0;i&lt;vals.length;i++)&#123;</span><br><span class="line">    sum+&#x3D;vals[i];</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let arr &#x3D; [1,2,3,4,5,6];</span><br><span class="line">let sum &#x3D; add(...arr);</span><br><span class="line">console.log(sum);  &#x2F;&#x2F;21</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
+        <tag>解构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一行代码数组去重</title>
+    <url>/2018/07/08/2018-07-08/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr &#x3D; [1, 1, 2, 2, 3, 3];</span><br><span class="line">let newarr &#x3D; Array.from(new Set(arr));</span><br><span class="line">console.log(newarr);&#x2F;&#x2F;[1, 2, 3]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>去重</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的省略号</title>
+    <url>/2018/05/13/2018-05-13/</url>
+    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
+<ol>
+<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
+</ol>
+<a id="more"></a>
+
+<ol start="2">
+<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
+</li>
+<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
+</li>
+</ol>
+<p><strong>单行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>多行文本出现省略号</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>省略号</tag>
+        <tag>裁剪</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IE浏览器出现offset</title>
+    <url>/2019/04/09/2019-04-09/</url>
+    <content><![CDATA[<p>当父元素的第一个子元素的设置margin-top时，margin值会传递给父元素，而子元素和父元素的边距则没有发生变化。<br>大部分情况下，用overflow:hidden，可以解决问题；很多文章都说为父元素添加overflow:hidden，这个方法是完美的。<br>但是今天发现用在一个项目上 overflow:hidden 在chrome浏览器正常，在IE浏览器出现了offset 1px 的情况。</p>
+<a id="more"></a>
+<p><strong>解决方法：</strong></p>
+<p>为父元素添加前置内容生成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.parent:before &#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    display: table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>ie</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Element Ui 同时验证多个表单</title>
+    <url>/2019/03/03/2019-03-03/</url>
+    <content><![CDATA[<p><strong>需求：Element Ui 同时验证多个表单</strong></p>
+<ul>
+<li>以下代码报错<br>Promise 调用 this 有问题</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let p1 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    this.$refs[&quot;gerenformRefa&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let p2 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    this.$refs[&quot;formRefb&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Promise.all([p1]).then(function() &#123;</span><br><span class="line">    console.log(&quot;666&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正确代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _this &#x3D; this;</span><br><span class="line">let p1 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    _this.$refs[&quot;formRefa&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let p2 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    _this.$refs[&quot;formRefb&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Promise.all([p1]).then(function() &#123;</span><br><span class="line">    console.log(&quot;666&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>原因：<br>promsie 里压根就读不到 this，可以理解：取不到全局变量，作用域的问题，promise 里的 this 和 vue 中的 this 指向不同，promise 外面定义 let _this = this ，然后在 promise 里使用 _this 就可以执行方法了</li>
+</ul>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>el-tooltip修改样式</title>
+    <url>/2019/05/19/2019-05-19/</url>
+    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
+<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VUE 定时请求接口数据</title>
+    <url>/2019/06/08/2019-06-08/</url>
+    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端导出表格功能</title>
+    <url>/2019/08/04/2019-08-04/</url>
+    <content><![CDATA[<p><strong>导出表格功能</strong></p>
+<h5 id="依赖包安装"><a href="#依赖包安装" class="headerlink" title="依赖包安装"></a>依赖包安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S file-saver xlsx</span><br><span class="line">npm install -D script-loader</span><br></pre></td></tr></table></figure>
+
+<p>下载 Blob.js 和 export2Excel.js，放到同一个文件夹<br>修改 export2Excel.js,否则第一次点击导出时会报错</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;script-loader!file-saver&#39;);</span><br><span class="line">require(&#39;.&#x2F;Blob&#39;);</span><br><span class="line">require(&#39;script-loader!xlsx&#x2F;dist&#x2F;xlsx.core.min&#39;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exportData() &#123;</span><br><span class="line">    let param&#x3D;&#123;</span><br><span class="line">        id :123123</span><br><span class="line">    &#125;</span><br><span class="line">    this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then( res &#x3D;&gt;&#123;</span><br><span class="line">        console.log(res)</span><br><span class="line">        this.exportList&#x3D;res.returnObj;</span><br><span class="line">        this.handleDownload();</span><br><span class="line">    &#125;).catch(err &#x3D;&gt;&#123;</span><br><span class="line">        console.log(err)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h5 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">handleDownload() &#123;</span><br><span class="line">    console.log(666)</span><br><span class="line">    require.ensure([], () &#x3D;&gt; &#123;　　　　　　　　</span><br><span class="line">        const &#123; export_json_to_excel &#125; &#x3D; require(&#39;@&#x2F;utils&#x2F;export2Excel&#39;);　　&#x2F;&#x2F;引入文件　　　　　　</span><br><span class="line">        const tHeader &#x3D; [&#39;名称&#39;, &#39;邮箱&#39;,&#39;类型&#39;]; &#x2F;&#x2F;将对应的属性名转换成中文</span><br><span class="line">        const filterVal &#x3D; [&#39;Company&#39;, &#39;Email&#39;,&#39;Type&#39;];&#x2F;&#x2F;table表格中对应的属性名　　　　　 　　　</span><br><span class="line">        const list &#x3D; this.exportList.map(item&#x3D;&gt;&#123;</span><br><span class="line">            if(item.Type&#x3D;&#x3D;&#x3D;&#39;1&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;A类&quot;</span><br><span class="line">            &#125;else if(item.Type&#x3D;&#x3D;&#x3D;&#39;2&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;B类&quot;</span><br><span class="line">            &#125;else if(item.Type&#x3D;&#x3D;&#x3D;&#39;0&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;C类&quot;</span><br><span class="line">            &#125;</span><br><span class="line">            return item;</span><br><span class="line">        &#125;);</span><br><span class="line">        console.log(list);　　　　　　　</span><br><span class="line">        const data &#x3D; this.formatJson(filterVal, list);　　　　　　　　</span><br><span class="line">        export_json_to_excel(tHeader, data, &#39;列表&#39;);　　　　　　</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">formatJson(filterVal, jsonData) &#123;</span><br><span class="line">    return jsonData.map(v &#x3D;&gt; filterVal.map(j &#x3D;&gt; v[j]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>导出</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS的 &amp;&amp; 和 || 同时使用的思考</title>
+    <url>/2019/08/11/2019-08-11/</url>
+    <content><![CDATA[<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>&amp;&amp; 和 || 是没有优先级的，代码从左到右执行</strong></p>
+<a id="more"></a>
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以下代码，T:true，F:false，</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">30</span>) &#123;<span class="comment">//T &amp;&amp; T || F =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">3</span>) &#123;<span class="comment">//T &amp;&amp; F || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;2-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;2-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">30</span>) &#123;<span class="comment">//T &amp;&amp; F || F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;3-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;3-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">3</span>) &#123;<span class="comment">//F &amp;&amp; T || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">3</span>) &#123;<span class="comment">//F &amp;&amp; F || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;5-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;5-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">30</span>) &#123;<span class="comment">//F &amp;&amp; T || F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;6-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;6-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">2</span> &amp;&amp; c === <span class="number">30</span>) &#123;<span class="comment">//T || T &amp;&amp; F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;7-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;7-2&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="短路"><a href="#短路" class="headerlink" title="短路"></a>短路</h3><ul>
+<li>表达式1 &amp;&amp; 表达式2 || 表达式3 </li>
+<li>表达式1 || 表达式2 &amp;&amp; 表达式3</li>
+</ul>
+<p>代码都是从左到右执行，<br>如果是 表达式1 &amp;&amp; 表达式2 || 表达式3，<br>当 表达式1 &amp;&amp; 表达式2 为 true 时；表达式3不会执行；</p>
+<p>如果是 表达式1 || 表达式2 &amp;&amp; 表达式3，<br>当 表达式1 &amp;&amp; 表达式2 为 false 时；表达式3不会执行。</p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>逻辑运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>element-ui 表格数据格式化</title>
+    <url>/2019/07/20/2019-07-20/</url>
+    <content><![CDATA[<p><strong>element-ui 表格需要格式化内容后展示</strong></p>
+<h5 id="使用-element-表格的-formatter-属性"><a href="#使用-element-表格的-formatter-属性" class="headerlink" title="使用 element 表格的 formatter 属性"></a>使用 element 表格的 formatter 属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;status&quot; label&#x3D;&quot;状态&quot; :formatter&#x3D;&quot;formatStatus&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatStatus(row, column) &#123;</span><br><span class="line">        return row.status &#x3D;&#x3D;&#x3D; &quot;1&quot; ? &quot;成功&quot; : row.status &#x3D;&#x3D;&#x3D; &quot;0&quot; ? &quot;失败&quot; : &quot;&#x2F;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h5 id="使用-filters"><a href="#使用-filters" class="headerlink" title="使用 filters"></a>使用 filters</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;状态&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;&#123;row&#125;&quot;&gt;&#123;&#123;row.status | formatStatus&#125;&#125;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">filters: &#123;</span><br><span class="line">    &#x2F;&#x2F; 状态</span><br><span class="line">    formatStatus: function(status) &#123;</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;1&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;成功&quot;;</span><br><span class="line">        &#125; else if (status &#x3D;&#x3D;&#x3D; &quot;0&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;失败&quot;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            status &#x3D; &quot;&#x2F;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>filters</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>el-date-picker在清空时，控制台报错</title>
+    <url>/2019/05/01/2019-05-01/</url>
+    <content><![CDATA[<p><strong>问题：el-date-picker 在清空时，控制台报错</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue.js:634 [Vue warn]: Error in v-on handler: &quot;TypeError: Cannot read property &#39;0&#39; of null&quot;</span><br><span class="line"></span><br><span class="line">found in</span><br><span class="line"></span><br><span class="line">---&gt; &lt;ElDatePicker&gt; at packages&#x2F;date-picker&#x2F;src&#x2F;picker.vue</span><br><span class="line">       &lt;Root&gt;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-date-picker</span><br><span class="line">    v-model&#x3D;&quot;value1&quot;</span><br><span class="line">    type&#x3D;&quot;datetimerange&quot;</span><br><span class="line">    format&#x3D;&quot;yyyy-MM-dd HH:mm&quot;</span><br><span class="line">    value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">    range-separator&#x3D;&quot;至&quot;</span><br><span class="line">    start-placeholder&#x3D;&quot;开始日期&quot;</span><br><span class="line">    end-placeholder&#x3D;&quot;结束日期&quot;</span><br><span class="line">    @change&#x3D;&quot;getTime&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-date-picker&gt;</span><br><span class="line"></span><br><span class="line">getTime()&#123;</span><br><span class="line">    if (!this.value1) &#123;&#x2F;&#x2F;解决value1为null时，控制台报错的问题</span><br><span class="line">        this.value1 &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VUE绑定数据闪现问题</title>
+    <url>/2019/10/05/2019-10-05/</url>
+    <content><![CDATA[<p>在页面渲染时，短暂出现，不是直接显示 Hello Vue!</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app &#x3D; new Vue(&#123;</span><br><span class="line">        el: &#39;#app&#39;,</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                message: &#39;Hello Vue!&#39;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：使用 v-cloak，标签中直接使用 v-cloak，样式中添加</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">  [v-cloak] &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id&#x3D;&quot;app&quot; v-cloak&gt;</span><br><span class="line">    &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>闪现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>element-UI dropdown 传多个参数</title>
+    <url>/2019/09/14/2019-09-14/</url>
+    <content><![CDATA[<p><strong>element-UI dropdown 在表格里，需要传多个参数</strong></p>
+<a id="more"></a>
+
+<h5 id="html-代码"><a href="#html-代码" class="headerlink" title="html 代码"></a>html 代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column fixed&#x3D;&quot;right&quot; label&#x3D;&quot;操作&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">        &lt;el-dropdown trigger&#x3D;&quot;click&quot; size&#x3D;&quot;small&quot; @command&#x3D;&quot;handleCommand&quot;&gt;</span><br><span class="line">            &lt;span class&#x3D;&quot;el-dropdown-link&quot;&gt;更多&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;el-dropdown-menu slot&#x3D;&quot;dropdown&quot;&gt;</span><br><span class="line">                &lt;el-dropdown-item :command&#x3D;&quot;beforeHandleCommand(&#39;add&#39;,scope.row)&quot;&gt;</span><br><span class="line">                    审批</span><br><span class="line">                &lt;&#x2F;el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item :command&#x3D;&quot;beforeHandleCommand(&#39;info&#39;,scope.row)&quot;&gt;</span><br><span class="line">                    审批记录</span><br><span class="line">                &lt;&#x2F;el-dropdown-item&gt;</span><br><span class="line">            &lt;&#x2F;el-dropdown-menu&gt;</span><br><span class="line">        &lt;&#x2F;el-dropdown&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="js-代码"><a href="#js-代码" class="headerlink" title="js 代码"></a>js 代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">beforeHandleCommand(item, row) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        command: item,</span><br><span class="line">        row: row</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">handleCommand(command) &#123;</span><br><span class="line">    console.log(command);</span><br><span class="line">    if (command.command &#x3D;&#x3D;&#x3D; &quot;add&quot;) &#123;</span><br><span class="line">        this.addSubAgency(command.row);</span><br><span class="line">    &#125; else if (command.command &#x3D;&#x3D;&#x3D; &quot;info&quot;) &#123;</span><br><span class="line">        this.querySubAgencyApproveInfo(command.row);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue监听对象内属性</title>
+    <url>/2019/11/10/2019-11-10/</url>
+    <content><![CDATA[<h5 id="正常-watch-的写法-data-里的属性可以直接监听"><a href="#正常-watch-的写法-data-里的属性可以直接监听" class="headerlink" title="正常 watch 的写法,data 里的属性可以直接监听"></a>正常 watch 的写法,data 里的属性可以直接监听</h5><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        meters: 1,</span><br><span class="line">        kilometers: &quot;&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    meters(val) &#123;</span><br><span class="line">        this.kilometers &#x3D; val * 1000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="监听对象内属性"><a href="#监听对象内属性" class="headerlink" title="监听对象内属性"></a>监听对象内属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        meters: 1,</span><br><span class="line">        kilometers: &quot;&quot;,</span><br><span class="line">        objData:&#123;</span><br><span class="line">            val:1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    &#39;objData.val&#39;(newVal, oldVal) &#123;</span><br><span class="line">        console.log(&#96;new:$&#123;newVal&#125;&#96;,&#96;old:$&#123;oldVal&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>监听</tag>
+        <tag>watch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vue-router的meta实现 设置每个页面的title标题</title>
+    <url>/2019/09/29/2019-09-29/</url>
+    <content><![CDATA[<p><strong>实现效果：切换菜单的时候，页面 title 变化</strong></p>
+<a id="more"></a>
+
+<h4 id="使用路由守卫"><a href="#使用路由守卫" class="headerlink" title="使用路由守卫"></a>使用路由守卫</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.beforeEach((to,from,next)&#x3D;&gt;&#123;</span><br><span class="line">  window.document.title &#x3D; to.meta.title || &quot;XXX管理后台&quot;</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>vue-router</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自定义组件的 v-model</title>
+    <url>/2020/01/11/2020-01-11/</url>
+    <content><![CDATA[<p>自定义组件，添加 v-model<br>一个组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件</p>
+<a id="more"></a>
+
+<h5 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Vue.component(&#39;number-box&#39;, &#123;</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &#39;myvalue&#39;,</span><br><span class="line">    event: &#39;input&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    myvalue: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span @click&#x3D;&quot;$emit(&#39;input&#39;,myvalue-1)&quot;&gt;-&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123;myvalue&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;span @click&#x3D;&quot;$emit(&#39;input&#39;,myvalue+1)&quot;&gt;+&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="调用组件"><a href="#调用组件" class="headerlink" title="调用组件"></a>调用组件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;number-box v-model&#x3D;&quot;invalue&quot;&gt;&lt;&#x2F;number-box&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 invalue 的值将会传入这个名为 myvalue 的 prop。同时当 <number-box> 触发一个 input 事件并附带一个新的值的时候，这个 invalue 的 property 将会被更新。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>监听</tag>
+        <tag>v-model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除当前页最后一条数据，页面还停留在当前页</title>
+    <url>/2020/01/04/2020-01-04/</url>
+    <content><![CDATA[<p>解决删除当前页最后一条数据，页面还停留在当前页的问题</p>
+<a id="more"></a>
+
+<p>成功删除数据后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;total：总条数，pageSize：当前每一页的数量</span><br><span class="line">let totalPage &#x3D; Math.ceil((this.total - 1) &#x2F; this.pageSize) &#x2F;&#x2F; 总页数</span><br><span class="line">let currentPage &#x3D; this.currentPage &gt; totalPage ? totalPage : this.currentPage;&#x2F;&#x2F;定义需要改变的当前页</span><br><span class="line">this.currentPage &#x3D; currentPage &lt; 1 ? 1 : currentPage;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;重新请求列表数据</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>分页</tag>
+        <tag>删除</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过滤器串联</title>
+    <url>/2020/02/23/2020-02-23/</url>
+    <content><![CDATA[<p><strong>过滤器可以串联</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA | filterB &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，filterA 被定义为接收单个参数的过滤器函数，表达式 message 的值将作为参数传入到函数中。然后继续调用同样被定义为接收单个参数的过滤器函数 filterB，将 filterA 的结果传递到 filterB 中。</p>
+<a id="more"></a>
+
+<p>过滤器是 JavaScript 函数，因此可以接收参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA(&#39;arg1&#39;, arg2) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，filterA 被定义为接收三个参数的过滤器函数。其中 message 的值作为第一个参数，普通字符串 ‘arg1’ 作为第二个参数，表达式 arg2 的值作为第三个参数。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>过滤器</tag>
+        <tag>filter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios 传参方式</title>
+    <url>/2019/12/18/2019-12-18/</url>
+    <content><![CDATA[<p>遇到后端需要用 form-data 传参的接口，然后了解了其他的方式。</p>
+<a id="more"></a>
+
+<ol>
+<li>Content-Type: multipart/form-data</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let params &#x3D; new FormData;</span><br><span class="line">params.append(&quot;oldPassword&quot;, this.ruleForm.oldPassword);</span><br><span class="line">params.append(&quot;newPassword&quot;, this.ruleForm.newPassword);</span><br><span class="line">this.$axios.post(&quot;&#x2F;xxx&#x2F;modify_password&quot;, params)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Content-Type: application/json</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let data &#x3D; &#123;&quot;code&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;yyyy&quot;&#125;;</span><br><span class="line">axios.post(&#96;$&#123;this.$url&#125;&#x2F;test&#x2F;testRequest&#96;,data)</span><br><span class="line">.then(res&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;res&#x3D;&gt;&#39;,res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Content-Type: application/x-www-form-urlencoded</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;需要引入qs</span><br><span class="line">axios.post(&#96;$&#123;this.$url&#125;&#x2F;test&#x2F;testRequest&#96;,qs.stringify(&#123; &#39;bar&#39;: 123 &#125;))</span><br><span class="line">.then(res&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;res&#x3D;&gt;&#39;,res);</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">const data &#x3D; &#123; &#39;bar&#39;: 123 &#125;;</span><br><span class="line">const options &#x3D; &#123;</span><br><span class="line">  method: &#39;POST&#39;,</span><br><span class="line">  headers: &#123; &#39;content-type&#39;: &#39;application&#x2F;x-www-form-urlencoded&#39; &#125;,</span><br><span class="line">  data: qs.stringify(data),</span><br><span class="line">  url,</span><br><span class="line">&#125;;</span><br><span class="line">axios(options);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
+    <url>/2020/04/14/2020-04-04/</url>
+    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
+<a id="more"></a>
+
+<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
+
+<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
+<ul>
+<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
+</li>
+<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>calc</tag>
+        <tag>IE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue $emit 传递多个参数</title>
+    <url>/2020/03/15/2020-03-15/</url>
+    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>emit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>element-ui 表格排序失效</title>
+    <url>/2020/06/07/2020-06-07/</url>
+    <content><![CDATA[<p><strong>失效原因：属性 prop 丢失</strong></p>
+<a id="more"></a>
+
+<p>用 el-table 的时候，如果内容写在&lt; template &gt;，正常会把 el-table-column 内的 prop 删除掉；<br>这时候，在 el-table-column 继续添加 sortable 将会失效。<br>将 prop 写上，即可解决问题。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片路径问题</title>
+    <url>/2020/05/17/2020-05-17/</url>
+    <content><![CDATA[<p><strong>图片显示不正常</strong></p>
+<a id="more"></a>
+
+<p>解决方式</p>
+<h5 id="使用-require"><a href="#使用-require" class="headerlink" title="使用 require"></a>使用 require</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        imgSrc:require(&#39;@&#x2F;assets&#x2F;images&#x2F;bg.jpg&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用~@"></a>使用~@</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;img1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .img1&#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background: url(&#39;~@&#x2F;assets&#x2F;images&#x2F;logo.png&#39;) center center no-repeat;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>图片</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Element Ui 滚动监听</title>
+    <url>/2020/06/20/2020-06-20/</url>
+    <content><![CDATA[<p><strong>需要对el-dialog弹窗进行滚动事件监听</strong></p>
+<a id="more"></a>
+
+<h5 id="添加监听事件"><a href="#添加监听事件" class="headerlink" title="添加监听事件"></a>添加监听事件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-button type&#x3D;&quot;primary&quot; @click&#x3D;&quot;create&quot;&gt;确认&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;el-dialog</span><br><span class="line">      :title&#x3D;&quot;ruleTitle&quot;</span><br><span class="line">      :visible.sync&#x3D;&quot;showRule&quot;</span><br><span class="line">      width&#x3D;&quot;70%&quot;</span><br><span class="line">      :append-to-body&#x3D;&quot;true&quot;</span><br><span class="line">      :before-close&#x3D;&quot;handleClose&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&lt;&#x2F;el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;el-dialog出现之后进行监听</span><br><span class="line">create()&#123;</span><br><span class="line">    this.showRule&#x3D;true;</span><br><span class="line">    this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">        document.addEventListener(&#39;scroll&#39;, this.handleScroll, true);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F;监听滚动</span><br><span class="line">handleScroll() &#123;</span><br><span class="line">  let sch &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollHeight;&#x2F;&#x2F;内容的高度</span><br><span class="line">  let cih &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].clientHeight;&#x2F;&#x2F;框的高度,固定的</span><br><span class="line">  let sct &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollTop;&#x2F;&#x2F;滚动的高度</span><br><span class="line">  &#x2F;&#x2F; console.log(sch, cih, sct);</span><br><span class="line">  if (sct &gt;&#x3D; sch - cih) &#123;</span><br><span class="line">    &#x2F;&#x2F;滚动条拉到底部了，在这里做一些事情</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在el-dialog关闭之前删除监听</span><br><span class="line">handleClose(done) &#123;</span><br><span class="line">  document.removeEventListener(&quot;scroll&quot;, this.handleScroll, true);</span><br><span class="line">  done();</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="设置-el-dialog-body-滚动条"><a href="#设置-el-dialog-body-滚动条" class="headerlink" title="设置.el-dialog__body 滚动条"></a>设置.el-dialog__body 滚动条</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;deep&#x2F; &#123;</span><br><span class="line">  .el-dialog &#123;</span><br><span class="line">    margin: 60px auto !important;</span><br><span class="line">    max-height: 550px;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    .el-dialog__body &#123;</span><br><span class="line">      max-height: 400px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>element</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3.0 子组件调用父组件的方法</title>
+    <url>/2020/11/24/2020-11-24/</url>
+    <content><![CDATA[<p><strong>vue3.0 子组件调用父组件的方法</strong></p>
+<a id="more"></a>
+
+<h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h4><p><strong>父组件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;register @update:changeDisplayValue&#x3D;&quot;changeDisplayValue&quot;&gt;&lt;&#x2F;register&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">setup()&#123;</span><br><span class="line">  let changeDisplayValue &#x3D; value &#x3D;&gt; &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">    loginData.displayValue &#x3D; value;</span><br><span class="line">  &#125;;</span><br><span class="line">  return &#123;</span><br><span class="line">    changeDisplayValue</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子组件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;register&quot;&gt;</span><br><span class="line">    &lt;h3&gt;注册&lt;&#x2F;h3&gt;</span><br><span class="line">    &lt;span @click&#x3D;&quot;toLogin&quot;&gt;去登录&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    let toLogin &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;update:changeDisplayValue&quot;, &quot;login&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">      toLogin</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法 2"></a>方法 2</h4><p><strong>父组件</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;register @changeDisplayValue=<span class="string">&quot;changeDisplayValue&quot;</span>&gt;&lt;/register&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子组件</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getcurrentInstance&#125; <span class="keyword">from</span> vue;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="function"><span class="title">setup</span>(<span class="params">props, context</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> internalInstance = getCurrentInstance();</span><br><span class="line">  <span class="keyword">let</span> toLogin = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    internalInstance.emit(<span class="string">&quot;changeDisplayValue&quot;</span>, <span class="string">&quot;login&quot;</span>);</span><br><span class="line">    <span class="comment">// 可用json对象的方式，传多个参数</span></span><br><span class="line">    <span class="comment">//internalInstance.emit(&quot;changeDisplayValue&quot;, &#123;a:&#x27;1&#x27;,b:&#x27;2&#x27;&#125;);</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    toLogin</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue3.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue项目中使用svg图片，可修改大小颜色</title>
+    <url>/2020/12/08/2020-12-08/</url>
+    <content><![CDATA[<p><strong>Vue项目中使用svg小图标</strong></p>
+<a id="more"></a>
+
+<h3 id="安装svg-sprite-loader和配置vue-config-js"><a href="#安装svg-sprite-loader和配置vue-config-js" class="headerlink" title="安装svg-sprite-loader和配置vue.config.js"></a>安装svg-sprite-loader和配置vue.config.js</h3><ol>
+<li>安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install svg-sprite-loader -S</span><br></pre></td></tr></table></figure></li>
+<li>配置规则<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;vue.config.js</span><br><span class="line">&#x2F;&#x2F; 内置路径包</span><br><span class="line">const path &#x3D; require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义resolve方法，获取绝对路径</span><br><span class="line">function resolve(dir) &#123;</span><br><span class="line">  return path.join(__dirname, dir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  chainWebpack: config &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 配置svg默认规则排除svg目录中svg文件处理</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&quot;svg&quot;)</span><br><span class="line">      .exclude.add(resolve(&quot;src&#x2F;assets&#x2F;svg&quot;))</span><br><span class="line">      .end();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 新增icons规则，设置svg-sprite-loader处理svg目录中svg文件</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&quot;icons&quot;)</span><br><span class="line">      .test(&#x2F;\.svg$&#x2F;)</span><br><span class="line">      .include.add(resolve(&quot;src&#x2F;assets&#x2F;svg&quot;))</span><br><span class="line">      .end()</span><br><span class="line">      .use(&quot;svg-sprite-loader&quot;)</span><br><span class="line">      .loader(&quot;svg-sprite-loader&quot;)</span><br><span class="line">      .options(&#123; symbolId: &quot;icon-[name]&quot; &#125;)</span><br><span class="line">      .end();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="SvgIcon组件代码"><a href="#SvgIcon组件代码" class="headerlink" title="SvgIcon组件代码"></a>SvgIcon组件代码</h3><ul>
+<li>一般放在/src/components<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;svg :class&#x3D;&quot;svgClass&quot; aria-hidden&#x3D;&quot;true&quot;&gt;</span><br><span class="line">        &lt;use :xlink:href&#x3D;&quot;iconName&quot;&gt;&lt;&#x2F;use&gt;</span><br><span class="line">    &lt;&#x2F;svg&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &#39;svg-icon&#39;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        iconClass: &#123;</span><br><span class="line">            type: String,</span><br><span class="line">            required: true</span><br><span class="line">        &#125;,</span><br><span class="line">        className: &#123;</span><br><span class="line">            type: String</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        iconName() &#123;</span><br><span class="line">            return &#96;#icon-$&#123;this.iconClass&#125;&#96;</span><br><span class="line">        &#125;,</span><br><span class="line">        svgClass() &#123;</span><br><span class="line">            if (this.className) &#123;</span><br><span class="line">                return &#39;svg-icon &#39; + this.className</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return &#39;svg-icon&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.svg-icon &#123;</span><br><span class="line">    width: 1em;</span><br><span class="line">    height: 1em;</span><br><span class="line">    vertical-align: -0.15em;</span><br><span class="line">    &#x2F;* 此属性为更改svg颜色属性设置 *&#x2F;</span><br><span class="line">    fill: currentColor;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="注册SvgIcon为全局组件"><a href="#注册SvgIcon为全局组件" class="headerlink" title="注册SvgIcon为全局组件"></a>注册SvgIcon为全局组件</h3><ul>
+<li>在/src/assets创建svg文件夹，里面放svg图片和一个index.js<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;index.js</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import SvgIcon from &#39;@&#x2F;components&#x2F;SvgIcon&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 全局注册组件</span><br><span class="line">Vue.component(&#39;svg-icon&#39;, SvgIcon)</span><br><span class="line">&#x2F;&#x2F; 定义一个加载目录的函数</span><br><span class="line">const requireAll &#x3D; requireContext &#x3D;&gt; requireContext.keys().map(requireContext)</span><br><span class="line">const req &#x3D; require.context(&#39;@&#x2F;assets&#x2F;svg&#39;, false, &#x2F;\.svg$&#x2F;)</span><br><span class="line">&#x2F;&#x2F; 加载目录下的所有 svg 文件</span><br><span class="line">requireAll(req)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>main.js引入<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 引入svg</span><br><span class="line">import &#39;.&#x2F;assets&#x2F;svg&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>组件调用<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;class-name:可设置颜色，大小；icon-class:svg图片的名字</span><br><span class="line">&#x2F;&#x2F;如果颜色无效，需要将svg的fill的值设置为空“fill&#x3D;&quot;&quot;”</span><br><span class="line">&lt;svg-icon class-name&#x3D;&quot;quanbu&quot; icon-class&#x3D;&quot;quanbu&quot;&gt;&lt;&#x2F;svg-icon&gt;</span><br></pre></td></tr></table></figure></li>
+<li>同时使用阿里的iconfont</li>
+</ol>
+<ul>
+<li>在项目设置里FontClass/Symbol 前缀不设置（因为默认值icon-），下载到本地放在/assets/iconfonts<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;main.js引入后，跟自己的svg图片一样使用</span><br><span class="line">import &quot;.&#x2F;assets&#x2F;iconfonts&#x2F;iconfont.js&quot;;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>svg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>keep-alive的生命周期</title>
+    <url>/2020/05/23/2020-05-23/</url>
+    <content><![CDATA[<p><strong>需求：在 keep-alive 的组件被激活时，需要重新获取某个数据</strong></p>
+<h5 id="keep-alive-的生命周期执行"><a href="#keep-alive-的生命周期执行" class="headerlink" title="keep-alive 的生命周期执行"></a>keep-alive 的生命周期执行</h5><p>页面第一次进入，钩子的触发顺序<br>created-&gt; mounted-&gt; activated，<br>退出时触发 deactivated<br>当再次进入（前进或者后退）时，只触发 activated<br>事件挂载的方法等，只执行一次的放在 mounted 中；组件每次进去执行的方法放在 activated 中。</p>
+<a id="more"></a>
+
+<h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 被keepalive包含的组件会被缓存 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component&gt;&lt;&#x2F;component&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
+
+<p>被 keepalive 包含的组件不会被再次初始化，也就意味着不会重走生命周期函数;<br>但是有时候是希望我们缓存的组件可以能够再次进行渲染，这时 Vue 为我们解决了这个问题;<br>被包含在 keep-alive 中创建的组件，会多出两个生命周期的钩子: activated 与 deactivated。</p>
+<ul>
+<li>activated<br>当 keepalive 包含的组件再次渲染的时候触发</li>
+<li>deactivated<br>当 keepalive 包含的组件销毁的时候触发</li>
+</ul>
+<p>keepalive 是一个抽象的组件，缓存的组件不会被 mounted,为此提供 activated 和 deactivated 钩子函数</p>
+<h5 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h5><ol>
+<li>在 vue2.0 的写法可以这样：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;acom v-if&#x3D;&quot;comval &#x3D;&#x3D;&#x3D; &#39;a&#39;&quot;&gt;&lt;&#x2F;acom&gt;</span><br><span class="line">  &lt;bcom v-if&#x3D;&quot;comval &#x3D;&#x3D;&#x3D; &#39;b&#39;&quot;&gt;&lt;&#x2F;bcom&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在 vue3.0 上面的写法会报错</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">VueCompilerError: &lt;KeepAlive&gt; expects exactly one child component.</span><br></pre></td></tr></table></figure>
+
+<p>只能写成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component :is&#x3D;&quot;comval&quot;&gt;&lt;&#x2F;component&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>keep-alive</tag>
+        <tag>生命周期</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端选中Excel文件后，解析并展示出来</title>
+    <url>/2021/02/01/2021-02-01/</url>
+    <content><![CDATA[<p><strong>需求：前端选中Excel文件后，先展示出来后再上传</strong></p>
+<h4 id="安装xlsx"><a href="#安装xlsx" class="headerlink" title="安装xlsx"></a>安装xlsx</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S xlsx</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h4><p>这里选择文件用的el-upload</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-upload</span><br><span class="line">  ref&#x3D;&quot;upload&quot;</span><br><span class="line">  action&#x3D;&quot;&quot;</span><br><span class="line">  accept&#x3D;&quot;.xls,.xlsx&quot;</span><br><span class="line">  :file-list&#x3D;&quot;fileList&quot;</span><br><span class="line">  :show-file-list&#x3D;&quot;false&quot;</span><br><span class="line">  :auto-upload&#x3D;&quot;false&quot;</span><br><span class="line">  :multiple&#x3D;&quot;false&quot;</span><br><span class="line">  :on-change&#x3D;&quot;onChange&quot;</span><br><span class="line">  :http-request&#x3D;&quot;uploadFile&quot;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;el-button slot&#x3D;&quot;trigger&quot; size&#x3D;&quot;small&quot; type&#x3D;&quot;primary&quot;&gt;</span><br><span class="line">    选取文件</span><br><span class="line">  &lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;el-upload&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="展示文件里的数据"><a href="#展示文件里的数据" class="headerlink" title="展示文件里的数据"></a>展示文件里的数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tabelListData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userName&quot; label&#x3D;&quot;用户名&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;displayName&quot; label&#x3D;&quot;昵称&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userRole&quot; label&#x3D;&quot;角色&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;phoneNum&quot; label&#x3D;&quot;手机号&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;passWord&quot; label&#x3D;&quot;密码&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="选择文件-1"><a href="#选择文件-1" class="headerlink" title="选择文件"></a>选择文件</h4><p>在选择文件夹的组件引入xlsx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;引入xlsx</span><br><span class="line">import XLSX from &quot;xlsx&quot;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 选择文件</span><br><span class="line">onChange(file, filelist) &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(file)</span><br><span class="line">  const fileReader &#x3D; new FileReader();</span><br><span class="line">  fileReader.onload &#x3D; (ev) &#x3D;&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      const data &#x3D; ev.target.result;</span><br><span class="line">      const workbook &#x3D; XLSX.read(data, &#123;</span><br><span class="line">        type: &#39;binary&#39;</span><br><span class="line">      &#125;);</span><br><span class="line">      for (let sheet in workbook.Sheets) &#123;</span><br><span class="line">        &#x2F;&#x2F;循环读取每个工作簿</span><br><span class="line">        const sheetArray &#x3D; XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);</span><br><span class="line">        &#x2F;&#x2F;若当前sheet没有数据，则continue</span><br><span class="line">        if (sheetArray.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&quot;读取文件&quot;);</span><br><span class="line">        console.log(sheetArray);</span><br><span class="line">         sheetArray.map(item &#x3D;&gt; &#123;</span><br><span class="line">          this.tabelListData.push(&#123;</span><br><span class="line">            userName: item[&quot;用户名&quot;],</span><br><span class="line">            displayName: item[&quot;昵称&quot;],</span><br><span class="line">            userRole: item[&quot;角色&quot;],</span><br><span class="line">            phoneNum: item[&quot;手机号&quot;],</span><br><span class="line">            passWord: item[&quot;密码&quot;]</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">      this.$message.warning(&#39;文件类型不正确！&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  &#x2F;&#x2F;注意这里，有些blog写的不一样，根据情况可修改</span><br><span class="line">  fileReader.readAsBinaryString(file.raw);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>上传操作略。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>XLSX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 transformRequest 格式化参数</title>
+    <url>/2021/04/10/2021-04-10/</url>
+    <content><![CDATA[<p><strong>需求：某个参数需要传入多个的情况</strong></p>
+<p>选择器是多选的情况，多选的数据是一个数组，直接将数组入参，无法达到效果。<br>开始想到的方法是将数据进行拼接，后面想到可以使用transformRequest方法进行参数格式化，方便其他地方调用</p>
+<a id="more"></a>
+
+<p><strong>方式一：拼接</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D;&quot;&quot;</span><br><span class="line">this.selectValue.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">    params +&#x3D; &#96;member&#x3D;$&#123;item&#125;&amp;&#96;</span><br><span class="line">&#125;);</span><br><span class="line">params +&#x3D; &#96;teamId&#x3D;$&#123;this.teamId&#125;&#96;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
+
+<p>封装的方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postRequest &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：transformRequest方法进行参数格式化</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D; &#123;</span><br><span class="line">    member: this.selectValue,</span><br><span class="line">    teamId: this.teamId</span><br><span class="line">&#125;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
+
+<p>封装的方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postStrReq &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        transformRequest: [function (data) &#123;</span><br><span class="line">            let ret &#x3D; &#39;&#39;;</span><br><span class="line">            for (let it in data) &#123;</span><br><span class="line">                ret +&#x3D; encodeURIComponent(it) + &#39;&#x3D;&#39; + encodeURIComponent(data[it]) + &#39;&amp;&#39;;</span><br><span class="line">            &#125;</span><br><span class="line">            return ret.slice(0, -1);</span><br><span class="line">        &#125;],</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo在macOS遇到的问题</title>
+    <url>/2021/03/08/2021-03-08/</url>
+    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 字节单位换算函数</title>
+    <url>/2021/04/18/2021-04-18/</url>
+    <content><![CDATA[<p><strong>需求：字节单位换算的场景</strong></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function byteConvert(bytes) &#123;</span><br><span class="line">    if (isNaN(bytes)) &#123;</span><br><span class="line">        return &#39;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    let symbols &#x3D; [&#39;bytes&#39;, &#39;KB&#39;, &#39;MB&#39;, &#39;GB&#39;, &#39;TB&#39;, &#39;PB&#39;, &#39;EB&#39;, &#39;ZB&#39;, &#39;YB&#39;];</span><br><span class="line">    let exp &#x3D; Math.floor(Math.log(bytes) &#x2F; Math.log(2));</span><br><span class="line">    if (exp &lt; 1) &#123;</span><br><span class="line">        exp &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line">    let i &#x3D; Math.floor(exp &#x2F; 10);</span><br><span class="line">    bytes &#x3D; bytes &#x2F; Math.pow(2, 10 * i);</span><br><span class="line"></span><br><span class="line">    if (bytes.toString().length &gt; bytes.toFixed(2).toString().length) &#123;</span><br><span class="line">        bytes &#x3D; bytes.toFixed(2);</span><br><span class="line">    &#125;</span><br><span class="line">    return bytes + &#39; &#39; + symbols[i];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 函数调用</span><br><span class="line">console.log(byteConvert(109784));&#x2F;&#x2F;107.21 KB</span><br></pre></td></tr></table></figure>
+
+<p>详解：<a href="https://juejin.cn/post/6844904018238504967">https://juejin.cn/post/6844904018238504967</a></p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2018/01/23/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>flex布局</title>
@@ -164,875 +1037,5 @@
         <tag>css</tag>
         <tag>flex</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>call apply bind的用法</title>
-    <url>/2018/03/19/2018-03-19/</url>
-    <content><![CDATA[<p><strong>call apply bind修正this的指向。</strong></p>
-<ol>
-<li>call(参数一（对象）,参数二,参数三) 参数一：this指向的对象，参数二是实参</li>
-<li>apply(对象,[实参一，实参二]])) 两个参数：参数一this指向对象，参数二是数组，可传实参</li>
-<li>bind(参数一（对象）,参数二,参数三)();和call的用法基本一样，需主动调用函数</li>
-</ol>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;张三&#39;;</span><br><span class="line">var age &#x3D; &#39;18&#39;;</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &#39;李四&#39;,</span><br><span class="line">    age: 19,</span><br><span class="line">    showme: function () &#123;</span><br><span class="line">        console.log(this.name + &#39;今年&#39; + this.age + &#39;岁&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.showme();&#x2F;&#x2F;李四今年19岁：this指向obj</span><br><span class="line"></span><br><span class="line">var newobj &#x3D; &#123;</span><br><span class="line">    name: &#39;王五&#39;,</span><br><span class="line">    age: 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.showme.call(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.apply(newobj);&#x2F;&#x2F;王五今年20岁 this:newobj</span><br><span class="line">obj.showme.bind(newobj)();&#x2F;&#x2F;王五今年20岁 this:newobj</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>call</tag>
-        <tag>apply</tag>
-        <tag>bind</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS hack</title>
-    <url>/2018/04/08/2018-04-08/</url>
-    <content><![CDATA[<p><strong>针对不同浏览器写不同的 CSS code 的过程就是 CSS hack。</strong></p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">    width:300px;</span><br><span class="line">    height:300px;</span><br><span class="line">    background-color:blue; &#x2F;*firefox*&#x2F;</span><br><span class="line">    background-color:red\9; &#x2F;*all ie*&#x2F;</span><br><span class="line">    background-color:yellow; &#x2F;*ie8*&#x2F;</span><br><span class="line">    +background-color:pink; &#x2F;*ie7*&#x2F;</span><br><span class="line">    _background-color:orange; &#x2F;*ie6*&#x2F;    </span><br><span class="line">&#125;</span><br><span class="line">:root #test &#123; background-color:purple\9; &#125; &#x2F;*ie9*&#x2F;</span><br><span class="line">@media all and (min-width:0px)&#123; #test &#123; background&#x3D;color:black； &#125;&#125; &#x2F;*opera*&#x2F;</span><br><span class="line">@media screen and (-webkit-min-device-pixel-ratio:0)&#123; #test &#123; background-color: gray; &#125;&#125; &#x2F;*Chrome and safari*&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-        <tag>hack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS正则</title>
-    <url>/2018/04/02/2018-04-02/</url>
-    <content><![CDATA[<ol>
-<li>迅雷链接<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^thunder:\&#x2F;\&#x2F;[a-zA-Z0-9]+&#x3D;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>子网掩码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$&#x2F;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<a id="more"></a>
-
-<ol start="3">
-<li>中国手机号(严谨), 根据工信部2019年最新公布的手机号段<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d&#123;8&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>邮箱<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9.!#$%&amp;&#39;*+\&#x2F;&#x3D;?^_&#96;&#123;|&#125;~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]&#123;0,61&#125;[a-zA-Z0-9])?)*$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>二代身份证号(18位数字),最后一位是校验位,可能为数字或字符X<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^\d&#123;6&#125;(18|19|20)\d&#123;2&#125;(0\d|10|11|12)([0-2]\d|30|31)\d&#123;3&#125;(\d|X|x)$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线组合<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>用户名正则，4到16位（字母，数字，下划线，减号）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;^[a-zA-Z0-9_-]&#123;4,16&#125;$&#x2F;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>正则</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS作用域</title>
-    <url>/2018/04/21/2018-04-21/</url>
-    <content><![CDATA[<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ol>
-<li>全局作用域：函数外部的作用域</li>
-<li>局部作用域：函数内部的作用域</li>
-</ol>
-<a id="more"></a>
-
-<h5 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var outer &#x3D; &#39;outer&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    console.log(outer);</span><br><span class="line">&#125;</span><br><span class="line">fn(); &#x2F;&#x2F;outer</span><br></pre></td></tr></table></figure>
-
-<h5 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    var inner&#x3D; &#39;inner&#39;;</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br><span class="line">console.log(inner); &#x2F;&#x2F;undefined</span><br></pre></td></tr></table></figure>
-
-<h5 id="变量提前声明"><a href="#变量提前声明" class="headerlink" title="变量提前声明"></a>变量提前声明</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var global &#x3D; &#39;global&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;undefined</span><br><span class="line">    var global &#x3D; &#39;newGlobal&#39;;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;newGlobal</span><br><span class="line">&#125;</span><br><span class="line">console.log(global); &#x2F;&#x2F;global</span><br></pre></td></tr></table></figure>
-
-<p>相当于:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var global &#x3D; &#39;global&#39;;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    var global; &#x2F;&#x2F;提前声明了局部变量；</span><br><span class="line">    console.log(global); &#x2F;&#x2F;undefined</span><br><span class="line">    var global &#x3D; &#39;newGlobal&#39;;</span><br><span class="line">    console.log(global); &#x2F;&#x2F;newGlobal</span><br><span class="line">&#125;</span><br><span class="line">console.log(global); &#x2F;&#x2F;global</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>作用域</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cookie LocalStorage sessionStorage</title>
-    <url>/2018/05/02/2018-05-02/</url>
-    <content><![CDATA[<h5 id="数据的生命周期"><a href="#数据的生命周期" class="headerlink" title="数据的生命周期"></a>数据的生命周期</h5><ol>
-<li>Cookie 一般由服务器生成，可设置失效时间，如果在浏览器端生成 Cookie，默认是关闭浏览器后失效</li>
-<li>LocalStorage 除非被清除，否则永远保存</li>
-<li>sessionStorage 仅在当前会话下有效，关闭页面或浏览器后被清除</li>
-</ol>
-<a id="more"></a>
-
-<h5 id="存放数据大小"><a href="#存放数据大小" class="headerlink" title="存放数据大小"></a>存放数据大小</h5><ol>
-<li>Cookie 4K 左右</li>
-<li>LocalStorage 一般为 5MB</li>
-<li>sessionStorage 一般为 5MB</li>
-</ol>
-<h5 id="与服务器端通信"><a href="#与服务器端通信" class="headerlink" title="与服务器端通信"></a>与服务器端通信</h5><ol>
-<li>Cookie 每次都会携带在 HTTP 头中，如果使用 Cookie 保存过多数据会带来性问题</li>
-<li>LocalStorage sessionStorage 仅在客户端（浏览器）中保存，不参与和服务器的通信</li>
-</ol>
-<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5><ol>
-<li>cookie 数据始终在同源的 http 请求中携带（即使不需要），即 cookie 在浏览器和服务器间来回传递，而 sessionStorage 和 localStorage 不会自动把数据发送给服务器，仅在本地保存。cookie 数据还有路径 path 的概念，可以限制 cookie 只属于某个路径下</li>
-<li>存储大小限制也不同，cookie 数据不能超过 4K，同时因为每次 http 请求都会携带 cookie、所以 cookie 只适合保存很小的数据，如会话标识。sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大</li>
-<li>数据有效期不同</li>
-</ol>
-<ul>
-<li>sessionStorage：仅在当前浏览器窗口关闭之前有效</li>
-<li>localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据</li>
-<li>cookie：只在设置的 cookie 过期时间之前有效，即使窗口关闭或浏览器关闭</li>
-</ul>
-<ol start="4">
-<li>作用域不同<br>sessionStorage 不在不同的浏览器窗口中共享<br>即使是同一个页面 localstorage 在所有同源窗口中都是共享的<br>cookie 也是在所有同源窗口中都是共享的</li>
-</ol>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><ol>
-<li>Cookie</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.cookie &#x3D; name+&#39;&#x3D;&#39;+value[;expires&#x3D;date][;path&#x3D;路径][;domain&#x3D;域名]</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>localStorage(永久的)sessionStorage(临时的)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setItem(key,val) &#x2F;&#x2F;设置</span><br><span class="line">getItem(key) &#x2F;&#x2F;获取</span><br><span class="line">removeItem(key) &#x2F;&#x2F;删除</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage</span><br><span class="line">localStorage.setItem(key,val)</span><br><span class="line">localStorage.getItem(key)</span><br><span class="line">localStorage.removeItem(key)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;sessionStorage</span><br><span class="line">sessionStorage.setItem(key,val)</span><br><span class="line">sessionStorage.getItem(key)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>缓存</tag>
-        <tag>Cookie</tag>
-        <tag>LocalStorage</tag>
-        <tag>sessionStorage</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>axios 发 post 请求问题</title>
-    <url>/2018/06/02/2018-06-02/</url>
-    <content><![CDATA[<p><strong>axios post 请求</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  method: &#39;post&#39;,</span><br><span class="line">  url: &#39;&#x2F;user&#x2F;12345&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &quot;username&quot;: &quot;admin&quot;,</span><br><span class="line">    &quot;pwd&quot;: &quot;admin&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>结果：后台没有接收到传参</p>
-<a id="more"></a>
-
-<p><strong>解决方案</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Qs from &#39;qs&#39;</span><br><span class="line">let data &#x3D; &#123;</span><br><span class="line">    &quot;username&quot;: &quot;admin&quot;,</span><br><span class="line">    &quot;pwd&quot;: &quot;admin&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">    method: &#39;post&#39;,</span><br><span class="line">    url: &#39;&#x2F;user&#x2F;12345&#39;,</span><br><span class="line">    data: Qs.stringify(data),</span><br><span class="line">    headers: &#123; &quot;Content-Type&quot;: &quot;application&#x2F;x-www-form-urlencoded&quot; &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>原因</strong><br>HTTP 请求中的 get 请求和 post 请求参数的存放位置是不一样的，get 请求的参数以键值对的方式跟在 url 后面的，而 post 请求的参数是以键值对的方式在请求体里的。<br>GET 方法传递参数时使用的是 params，是以/user?ID=1&amp;name=mike&amp;sex=male 形式传递的<br>使用 POST 时对应的传参使用的是 data，是{ “name” : “mike”, “sex” : “male” }<br>为何要设置请求头里的’Content-Type’：<br>因为 axios 默认的 content-type 是 application/json，具体怎么传，取决于后端要怎么接受数据。</p>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>axios</tag>
-        <tag>post</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的省略号</title>
-    <url>/2018/05/13/2018-05-13/</url>
-    <content><![CDATA[<p><strong>CSS 中的省略号</strong></p>
-<ol>
-<li>容器溢出设置的属性<br>overflow:<br>hidden——把溢出容器的部分隐藏<br>visible——不隐藏，默认值<br>scroll——不管容器是否溢出，都出现滚动条<br>注意点：<br>overflow 属性给父元素（容器）设置</li>
-</ol>
-<a id="more"></a>
-
-<ol start="2">
-<li><p>空白空间的设置<br>white-space:<br>normal——默认值，浏览器把多余的空白空间忽略，只显示一行<br>pre——空白空间都会被浏览器保留，并且不换行<br>pre-wrap——空白空间会被浏览器保留，而且会换行<br>pre-line——空格符号会被忽略，但是换行符会被保留<br>nowrap——不换行</p>
-</li>
-<li><p>文本溢出设置的属性<br>text-overflow:clip（简单裁剪）| ellipsis (出现省略符号）<br>注意点：必须配合 overflow:hidden</p>
-</li>
-</ol>
-<p><strong>单行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>多行文本出现省略号</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    display: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 3;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>省略号</tag>
-        <tag>裁剪</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IE浏览器出现offset</title>
-    <url>/2019/04/09/2019-04-09/</url>
-    <content><![CDATA[<p>当父元素的第一个子元素的设置margin-top时，margin值会传递给父元素，而子元素和父元素的边距则没有发生变化。<br>大部分情况下，用overflow:hidden，可以解决问题；很多文章都说为父元素添加overflow:hidden，这个方法是完美的。<br>但是今天发现用在一个项目上 overflow:hidden 在chrome浏览器正常，在IE浏览器出现了offset 1px 的情况。</p>
-<a id="more"></a>
-<p><strong>解决方法：</strong></p>
-<p>为父元素添加前置内容生成</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.parent:before &#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    display: table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-        <tag>ie</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一行代码数组去重</title>
-    <url>/2018/07/08/2018-07-08/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr &#x3D; [1, 1, 2, 2, 3, 3];</span><br><span class="line">let newarr &#x3D; Array.from(new Set(arr));</span><br><span class="line">console.log(newarr);&#x2F;&#x2F;[1, 2, 3]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>数组</tag>
-        <tag>去重</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Element Ui 同时验证多个表单</title>
-    <url>/2019/03/03/2019-03-03/</url>
-    <content><![CDATA[<p><strong>需求：Element Ui 同时验证多个表单</strong></p>
-<ul>
-<li>以下代码报错<br>Promise 调用 this 有问题</li>
-</ul>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let p1 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    this.$refs[&quot;gerenformRefa&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let p2 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    this.$refs[&quot;formRefb&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Promise.all([p1]).then(function() &#123;</span><br><span class="line">    console.log(&quot;666&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>正确代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _this &#x3D; this;</span><br><span class="line">let p1 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    _this.$refs[&quot;formRefa&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let p2 &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">    _this.$refs[&quot;formRefb&quot;].validate(valid &#x3D;&gt; &#123;</span><br><span class="line">        if (valid) &#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Promise.all([p1]).then(function() &#123;</span><br><span class="line">    console.log(&quot;666&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>原因：<br>promsie 里压根就读不到 this，可以理解：取不到全局变量，作用域的问题，promise 里的 this 和 vue 中的 this 指向不同，promise 外面定义 let _this = this ，然后在 promise 里使用 _this 就可以执行方法了</li>
-</ul>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>el-date-picker在清空时，控制台报错</title>
-    <url>/2019/05/01/2019-05-01/</url>
-    <content><![CDATA[<p><strong>问题：el-date-picker 在清空时，控制台报错</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue.js:634 [Vue warn]: Error in v-on handler: &quot;TypeError: Cannot read property &#39;0&#39; of null&quot;</span><br><span class="line"></span><br><span class="line">found in</span><br><span class="line"></span><br><span class="line">---&gt; &lt;ElDatePicker&gt; at packages&#x2F;date-picker&#x2F;src&#x2F;picker.vue</span><br><span class="line">       &lt;Root&gt;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-date-picker</span><br><span class="line">    v-model&#x3D;&quot;value1&quot;</span><br><span class="line">    type&#x3D;&quot;datetimerange&quot;</span><br><span class="line">    format&#x3D;&quot;yyyy-MM-dd HH:mm&quot;</span><br><span class="line">    value-format&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">    range-separator&#x3D;&quot;至&quot;</span><br><span class="line">    start-placeholder&#x3D;&quot;开始日期&quot;</span><br><span class="line">    end-placeholder&#x3D;&quot;结束日期&quot;</span><br><span class="line">    @change&#x3D;&quot;getTime&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-date-picker&gt;</span><br><span class="line"></span><br><span class="line">getTime()&#123;</span><br><span class="line">    if (!this.value1) &#123;&#x2F;&#x2F;解决value1为null时，控制台报错的问题</span><br><span class="line">        this.value1 &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>el-tooltip修改样式</title>
-    <url>/2019/05/19/2019-05-19/</url>
-    <content><![CDATA[<p><strong>问题：el-tooltip 只有两种主题，不符合当前的需求</strong></p>
-<p>解决方法：自行添加样式<br>使用 popper-class 为 Tooltip 的 popper 添加类名<br>因为 tooltip 节点是在组件外生成的，所以需要写全局的样式，不能加 scoped</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-tooltip</span><br><span class="line">    class&#x3D;&quot;item&quot;</span><br><span class="line">    content&#x3D;&quot;查看按需订单&quot;</span><br><span class="line">    placement&#x3D;&quot;top&quot;</span><br><span class="line">    popper-class&#x3D;&quot;toptip&quot;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;span&gt;查看按...&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;el-tooltip&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的边框颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper[x-placement^&#x3D;&quot;top&quot;] .popper__arrow:after &#123;</span><br><span class="line">    border-top-color: #fff;&#x2F;&#x2F;三角的背景颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip.el-tooltip__popper.is-dark &#123;</span><br><span class="line">    color: #2a2b32;&#x2F;&#x2F;提示文字的颜色</span><br><span class="line">&#125;</span><br><span class="line">.toptip &#123;</span><br><span class="line">    background: #fff !important;&#x2F;&#x2F;提示框的背景颜色</span><br><span class="line">    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);&#x2F;&#x2F;提示框的边框阴影</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VUE 定时请求接口数据</title>
-    <url>/2019/06/08/2019-06-08/</url>
-    <content><![CDATA[<p><strong>项目需求：每 5 分钟自动刷新表格数据</strong></p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            tableData: [],  &#x2F;&#x2F; 表格数据</span><br><span class="line">            timer: null  &#x2F;&#x2F; 定时器</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 每5分钟刷新一次</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">            this.getData()</span><br><span class="line">        &#125;,1000* 300)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        &#x2F;&#x2F; 请求数据</span><br><span class="line">        getData () &#123;</span><br><span class="line">            this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then((res) &#x3D;&gt;&#123;</span><br><span class="line">               if (data.statusCode &#x3D;&#x3D; &quot;800&quot;) &#123;</span><br><span class="line">                    this.tableData &#x3D; data.returnObj.result;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&quot;请求数据失败！&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#x2F;&#x2F;清除定时器</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">        this.timer&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>element-ui 表格数据格式化</title>
-    <url>/2019/07/20/2019-07-20/</url>
-    <content><![CDATA[<p><strong>element-ui 表格需要格式化内容后展示</strong></p>
-<h5 id="使用-element-表格的-formatter-属性"><a href="#使用-element-表格的-formatter-属性" class="headerlink" title="使用 element 表格的 formatter 属性"></a>使用 element 表格的 formatter 属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;status&quot; label&#x3D;&quot;状态&quot; :formatter&#x3D;&quot;formatStatus&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatStatus(row, column) &#123;</span><br><span class="line">        return row.status &#x3D;&#x3D;&#x3D; &quot;1&quot; ? &quot;成功&quot; : row.status &#x3D;&#x3D;&#x3D; &quot;0&quot; ? &quot;失败&quot; : &quot;&#x2F;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h5 id="使用-filters"><a href="#使用-filters" class="headerlink" title="使用 filters"></a>使用 filters</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;状态&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;&#123;row&#125;&quot;&gt;&#123;&#123;row.status | formatStatus&#125;&#125;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">filters: &#123;</span><br><span class="line">    &#x2F;&#x2F; 状态</span><br><span class="line">    formatStatus: function(status) &#123;</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;1&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;成功&quot;;</span><br><span class="line">        &#125; else if (status &#x3D;&#x3D;&#x3D; &quot;0&quot;) &#123;</span><br><span class="line">            status &#x3D; &quot;失败&quot;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            status &#x3D; &quot;&#x2F;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>filters</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端导出表格功能</title>
-    <url>/2019/08/04/2019-08-04/</url>
-    <content><![CDATA[<p><strong>导出表格功能</strong></p>
-<h5 id="依赖包安装"><a href="#依赖包安装" class="headerlink" title="依赖包安装"></a>依赖包安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S file-saver xlsx</span><br><span class="line">npm install -D script-loader</span><br></pre></td></tr></table></figure>
-
-<p>下载 Blob.js 和 export2Excel.js，放到同一个文件夹<br>修改 export2Excel.js,否则第一次点击导出时会报错</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;script-loader!file-saver&#39;);</span><br><span class="line">require(&#39;.&#x2F;Blob&#39;);</span><br><span class="line">require(&#39;script-loader!xlsx&#x2F;dist&#x2F;xlsx.core.min&#39;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exportData() &#123;</span><br><span class="line">    let param&#x3D;&#123;</span><br><span class="line">        id :123123</span><br><span class="line">    &#125;</span><br><span class="line">    this.$axios.get(&#39;&#x2F;api&#x2F;test&#39;).then( res &#x3D;&gt;&#123;</span><br><span class="line">        console.log(res)</span><br><span class="line">        this.exportList&#x3D;res.returnObj;</span><br><span class="line">        this.handleDownload();</span><br><span class="line">    &#125;).catch(err &#x3D;&gt;&#123;</span><br><span class="line">        console.log(err)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h5 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">handleDownload() &#123;</span><br><span class="line">    console.log(666)</span><br><span class="line">    require.ensure([], () &#x3D;&gt; &#123;　　　　　　　　</span><br><span class="line">        const &#123; export_json_to_excel &#125; &#x3D; require(&#39;@&#x2F;utils&#x2F;export2Excel&#39;);　　&#x2F;&#x2F;引入文件　　　　　　</span><br><span class="line">        const tHeader &#x3D; [&#39;名称&#39;, &#39;邮箱&#39;,&#39;类型&#39;]; &#x2F;&#x2F;将对应的属性名转换成中文</span><br><span class="line">        const filterVal &#x3D; [&#39;Company&#39;, &#39;Email&#39;,&#39;Type&#39;];&#x2F;&#x2F;table表格中对应的属性名　　　　　 　　　</span><br><span class="line">        const list &#x3D; this.exportList.map(item&#x3D;&gt;&#123;</span><br><span class="line">            if(item.Type&#x3D;&#x3D;&#x3D;&#39;1&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;A类&quot;</span><br><span class="line">            &#125;else if(item.Type&#x3D;&#x3D;&#x3D;&#39;2&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;B类&quot;</span><br><span class="line">            &#125;else if(item.Type&#x3D;&#x3D;&#x3D;&#39;0&#39;)&#123;</span><br><span class="line">                item.Type&#x3D;&quot;C类&quot;</span><br><span class="line">            &#125;</span><br><span class="line">            return item;</span><br><span class="line">        &#125;);</span><br><span class="line">        console.log(list);　　　　　　　</span><br><span class="line">        const data &#x3D; this.formatJson(filterVal, list);　　　　　　　　</span><br><span class="line">        export_json_to_excel(tHeader, data, &#39;列表&#39;);　　　　　　</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">formatJson(filterVal, jsonData) &#123;</span><br><span class="line">    return jsonData.map(v &#x3D;&gt; filterVal.map(j &#x3D;&gt; v[j]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>导出</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS的 &amp;&amp; 和 || 同时使用的思考</title>
-    <url>/2019/08/11/2019-08-11/</url>
-    <content><![CDATA[<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>&amp;&amp; 和 || 是没有优先级的，代码从左到右执行</strong></p>
-<a id="more"></a>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以下代码，T:true，F:false，</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">30</span>) &#123;<span class="comment">//T &amp;&amp; T || F =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">3</span>) &#123;<span class="comment">//T &amp;&amp; F || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;2-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;2-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">30</span>) &#123;<span class="comment">//T &amp;&amp; F || F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;3-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;3-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">3</span>) &#123;<span class="comment">//F &amp;&amp; T || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">20</span> || c === <span class="number">3</span>) &#123;<span class="comment">//F &amp;&amp; F || T =&gt; T</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;5-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;5-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">10</span> &amp;&amp; b === <span class="number">2</span> || c === <span class="number">30</span>) &#123;<span class="comment">//F &amp;&amp; T || F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;6-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;6-2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">1</span> &amp;&amp; b === <span class="number">2</span> &amp;&amp; c === <span class="number">30</span>) &#123;<span class="comment">//T || T &amp;&amp; F =&gt; F</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;7-1&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;7-2&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="短路"><a href="#短路" class="headerlink" title="短路"></a>短路</h3><ul>
-<li>表达式1 &amp;&amp; 表达式2 || 表达式3 </li>
-<li>表达式1 || 表达式2 &amp;&amp; 表达式3</li>
-</ul>
-<p>代码都是从左到右执行，<br>如果是 表达式1 &amp;&amp; 表达式2 || 表达式3，<br>当 表达式1 &amp;&amp; 表达式2 为 true 时；表达式3不会执行；</p>
-<p>如果是 表达式1 || 表达式2 &amp;&amp; 表达式3，<br>当 表达式1 &amp;&amp; 表达式2 为 false 时；表达式3不会执行。</p>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>逻辑运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>element-UI dropdown 传多个参数</title>
-    <url>/2019/09/14/2019-09-14/</url>
-    <content><![CDATA[<p><strong>element-UI dropdown 在表格里，需要传多个参数</strong></p>
-<a id="more"></a>
-
-<h5 id="html-代码"><a href="#html-代码" class="headerlink" title="html 代码"></a>html 代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column fixed&#x3D;&quot;right&quot; label&#x3D;&quot;操作&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">        &lt;el-dropdown trigger&#x3D;&quot;click&quot; size&#x3D;&quot;small&quot; @command&#x3D;&quot;handleCommand&quot;&gt;</span><br><span class="line">            &lt;span class&#x3D;&quot;el-dropdown-link&quot;&gt;更多&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;el-dropdown-menu slot&#x3D;&quot;dropdown&quot;&gt;</span><br><span class="line">                &lt;el-dropdown-item :command&#x3D;&quot;beforeHandleCommand(&#39;add&#39;,scope.row)&quot;&gt;</span><br><span class="line">                    审批</span><br><span class="line">                &lt;&#x2F;el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item :command&#x3D;&quot;beforeHandleCommand(&#39;info&#39;,scope.row)&quot;&gt;</span><br><span class="line">                    审批记录</span><br><span class="line">                &lt;&#x2F;el-dropdown-item&gt;</span><br><span class="line">            &lt;&#x2F;el-dropdown-menu&gt;</span><br><span class="line">        &lt;&#x2F;el-dropdown&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="js-代码"><a href="#js-代码" class="headerlink" title="js 代码"></a>js 代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">beforeHandleCommand(item, row) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        command: item,</span><br><span class="line">        row: row</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">handleCommand(command) &#123;</span><br><span class="line">    console.log(command);</span><br><span class="line">    if (command.command &#x3D;&#x3D;&#x3D; &quot;add&quot;) &#123;</span><br><span class="line">        this.addSubAgency(command.row);</span><br><span class="line">    &#125; else if (command.command &#x3D;&#x3D;&#x3D; &quot;info&quot;) &#123;</span><br><span class="line">        this.querySubAgencyApproveInfo(command.row);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES6的新增语法</title>
-    <url>/2018/06/10/2018-06-10/</url>
-    <content><![CDATA[<h5 id="let"><a href="#let" class="headerlink" title="let"></a>let</h5><p>变量声明不会提前<br>块级作用域<br>let 不允许相同作用域内多次声明同一变量</p>
-<a id="more"></a>
-
-<h5 id="const"><a href="#const" class="headerlink" title="const"></a>const</h5><p>声明常量，声明后不能再修改值<br>变量声明不会提前<br>块级作用域<br>const 不允许相同作用域内多次声明同一变量<br>声明后无法修改值 3. let、const、var 的区别</p>
-<ul>
-<li>使用 var 声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象。</li>
-<li>使用 let 声明的变量，其作用域为该语句所在的代码块内，不存在变量提升。</li>
-<li>使用 const 声明的是常量，在后面出现的代码中不能再修改该常量的值。</li>
-</ul>
-<h5 id="解构与赋值"><a href="#解构与赋值" class="headerlink" title="解构与赋值"></a>解构与赋值</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;const &#123; name, age &#125; &#x3D; res.data.data</span><br><span class="line">&#x2F;&#x2F;const &#123; data: &#123;name, age &#125; &#125; &#x3D; res.data</span><br><span class="line">const &#123; data: &#123; data: &#123; name, age&#125; &#125; &#125; &#x3D; res</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>数组解构</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let [a, b, c] &#x3D; [1, 2, 3]</span><br><span class="line">console.log(a) &#x2F;&#x2F; 1</span><br><span class="line">console.log(b) &#x2F;&#x2F;2</span><br><span class="line">console.log(c) &#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>对象解构</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let obj &#x3D; &#123;</span><br><span class="line">    name: &#39;test&#39;,</span><br><span class="line">    adr: &#39;testAddress&#39;</span><br><span class="line">&#125;</span><br><span class="line">let &#123;</span><br><span class="line">    name,</span><br><span class="line">    adr</span><br><span class="line">&#125; &#x3D; obj; &#x2F;&#x2F;取的变量名要和属性名一致,否则解构失败</span><br><span class="line">console.log(name, adr );&#x2F;&#x2F;test testAddress</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>ES6 解构并重命名：属性名:新名字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let &#123;</span><br><span class="line">    name: username,</span><br><span class="line">    adr</span><br><span class="line">&#125; &#x3D; obj;</span><br><span class="line">console.log(username, adr);&#x2F;&#x2F;test testAddress</span><br></pre></td></tr></table></figure>
-
-<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>形参只有一个的时候，可以省略圆括号<br>如果只有一个语句，并且 return 的时候，就可以省略花括号<br>箭头函数都可以省略 function</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;普通函数：只有一个形参</span><br><span class="line">function show1(a) &#123;</span><br><span class="line">    return a + 1;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：只有一个形参</span><br><span class="line">let show2 &#x3D; a &#x3D;&gt; a + 1;</span><br><span class="line">console.log(show1(1),show2(1));&#x2F;&#x2F;2 2</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;普通函数：没有形参</span><br><span class="line">function show3() &#123;</span><br><span class="line">    return 666;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：没有形参</span><br><span class="line">let show4 &#x3D; () &#x3D;&gt; 666;</span><br><span class="line">console.log(show3(), show4());&#x2F;&#x2F;666 666</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;普通函数：多个形参</span><br><span class="line">function show5(a, b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;箭头函数：多个形参</span><br><span class="line">let show6 &#x3D; (a, b) &#x3D;&gt; a + b;</span><br><span class="line">console.log(show5(3,3),show6(333,333));&#x2F;&#x2F;6 666</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;箭头函数里面没有this：指向外层的this</span><br><span class="line">btn.onclick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(this);&#x2F;&#x2F;window</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    age: 20,</span><br><span class="line">    say: () &#x3D;&gt; &#123;</span><br><span class="line">        console.log(this.age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.say() &#x2F;&#x2F;undefined,因为指向的是window</span><br></pre></td></tr></table></figure>
-
-<h5 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var b &#x3D; 10;</span><br><span class="line">console.log(&#96;Fifteen is $&#123;a + b&#125; and</span><br><span class="line">not $&#123;2 * a + b&#125;.&#96;);</span><br><span class="line">&#x2F;&#x2F; &quot;Fifteen is 15 and</span><br><span class="line">&#x2F;&#x2F; not 20.&quot;</span><br></pre></td></tr></table></figure>
-
-<h5 id="扩展运算符（…）"><a href="#扩展运算符（…）" class="headerlink" title="扩展运算符（…）"></a>扩展运算符（…）</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr1 &#x3D; [1, 2];</span><br><span class="line">let arr2 &#x3D; [3, 4];</span><br><span class="line">let newarr &#x3D; [...arr1, ...arr2];</span><br><span class="line">console.log(newarr) &#x2F;&#x2F;[1, 2, 3, 4]</span><br><span class="line">function add(...vals)&#123;</span><br><span class="line">  let sum&#x3D;0;</span><br><span class="line">  for(let i&#x3D;0;i&lt;vals.length;i++)&#123;</span><br><span class="line">    sum+&#x3D;vals[i];</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let arr &#x3D; [1,2,3,4,5,6];</span><br><span class="line">let sum &#x3D; add(...arr);</span><br><span class="line">console.log(sum);  &#x2F;&#x2F;21</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>ES6</tag>
-        <tag>解构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用vue-router的meta实现 设置每个页面的title标题</title>
-    <url>/2019/09/29/2019-09-29/</url>
-    <content><![CDATA[<p><strong>实现效果：切换菜单的时候，页面 title 变化</strong></p>
-<a id="more"></a>
-
-<h4 id="使用路由守卫"><a href="#使用路由守卫" class="headerlink" title="使用路由守卫"></a>使用路由守卫</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.beforeEach((to,from,next)&#x3D;&gt;&#123;</span><br><span class="line">  window.document.title &#x3D; to.meta.title || &quot;XXX管理后台&quot;</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>vue-router</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue监听对象内属性</title>
-    <url>/2019/11/10/2019-11-10/</url>
-    <content><![CDATA[<h5 id="正常-watch-的写法-data-里的属性可以直接监听"><a href="#正常-watch-的写法-data-里的属性可以直接监听" class="headerlink" title="正常 watch 的写法,data 里的属性可以直接监听"></a>正常 watch 的写法,data 里的属性可以直接监听</h5><a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        meters: 1,</span><br><span class="line">        kilometers: &quot;&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    meters(val) &#123;</span><br><span class="line">        this.kilometers &#x3D; val * 1000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="监听对象内属性"><a href="#监听对象内属性" class="headerlink" title="监听对象内属性"></a>监听对象内属性</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        meters: 1,</span><br><span class="line">        kilometers: &quot;&quot;,</span><br><span class="line">        objData:&#123;</span><br><span class="line">            val:1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    &#39;objData.val&#39;(newVal, oldVal) &#123;</span><br><span class="line">        console.log(&#96;new:$&#123;newVal&#125;&#96;,&#96;old:$&#123;oldVal&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>监听</tag>
-        <tag>watch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VUE绑定数据闪现问题</title>
-    <url>/2019/10/05/2019-10-05/</url>
-    <content><![CDATA[<p>在页面渲染时，短暂出现，不是直接显示 Hello Vue!</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app &#x3D; new Vue(&#123;</span><br><span class="line">        el: &#39;#app&#39;,</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                message: &#39;Hello Vue!&#39;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：使用 v-cloak，标签中直接使用 v-cloak，样式中添加</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">  [v-cloak] &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id&#x3D;&quot;app&quot; v-cloak&gt;</span><br><span class="line">    &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>闪现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过滤器串联</title>
-    <url>/2020/02/23/2020-02-23/</url>
-    <content><![CDATA[<p><strong>过滤器可以串联</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA | filterB &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，filterA 被定义为接收单个参数的过滤器函数，表达式 message 的值将作为参数传入到函数中。然后继续调用同样被定义为接收单个参数的过滤器函数 filterB，将 filterA 的结果传递到 filterB 中。</p>
-<a id="more"></a>
-
-<p>过滤器是 JavaScript 函数，因此可以接收参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA(&#39;arg1&#39;, arg2) &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里，filterA 被定义为接收三个参数的过滤器函数。其中 message 的值作为第一个参数，普通字符串 ‘arg1’ 作为第二个参数，表达式 arg2 的值作为第三个参数。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>过滤器</tag>
-        <tag>filter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>删除当前页最后一条数据，页面还停留在当前页</title>
-    <url>/2020/01/04/2020-01-04/</url>
-    <content><![CDATA[<p>解决删除当前页最后一条数据，页面还停留在当前页的问题</p>
-<a id="more"></a>
-
-<p>成功删除数据后</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;total：总条数，pageSize：当前每一页的数量</span><br><span class="line">let totalPage &#x3D; Math.ceil((this.total - 1) &#x2F; this.pageSize) &#x2F;&#x2F; 总页数</span><br><span class="line">let currentPage &#x3D; this.currentPage &gt; totalPage ? totalPage : this.currentPage;&#x2F;&#x2F;定义需要改变的当前页</span><br><span class="line">this.currentPage &#x3D; currentPage &lt; 1 ? 1 : currentPage;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;重新请求列表数据</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>分页</tag>
-        <tag>删除</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自定义组件的 v-model</title>
-    <url>/2020/01/11/2020-01-11/</url>
-    <content><![CDATA[<p>自定义组件，添加 v-model<br>一个组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件</p>
-<a id="more"></a>
-
-<h5 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Vue.component(&#39;number-box&#39;, &#123;</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &#39;myvalue&#39;,</span><br><span class="line">    event: &#39;input&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    myvalue: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span @click&#x3D;&quot;$emit(&#39;input&#39;,myvalue-1)&quot;&gt;-&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123;myvalue&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;span @click&#x3D;&quot;$emit(&#39;input&#39;,myvalue+1)&quot;&gt;+&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="调用组件"><a href="#调用组件" class="headerlink" title="调用组件"></a>调用组件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;number-box v-model&#x3D;&quot;invalue&quot;&gt;&lt;&#x2F;number-box&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里的 invalue 的值将会传入这个名为 myvalue 的 prop。同时当 <number-box> 触发一个 input 事件并附带一个新的值的时候，这个 invalue 的 property 将会被更新。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>监听</tag>
-        <tag>v-model</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue $emit 传递多个参数</title>
-    <url>/2020/03/15/2020-03-15/</url>
-    <content><![CDATA[<h5 id="emit-传递一个参数"><a href="#emit-传递一个参数" class="headerlink" title="$emit 传递一个参数"></a>$emit 传递一个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(val)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(val) &#123;</span><br><span class="line">  this.val &#x3D; val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h5 id="emit-传递多个参数"><a href="#emit-传递多个参数" class="headerlink" title="$emit 传递多个参数"></a>$emit 传递多个参数</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">this.$emit(&#39;changeValue&#39;,value,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;posilCom @changeValue&#x3D;&quot;handleValue(arguments)&quot;&gt;&lt;&#x2F;posilCom&gt;</span><br><span class="line">handleValue(arr) &#123;</span><br><span class="line">  this.val &#x3D; arr[0];</span><br><span class="line">  this.isActive &#x3D; arr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>emit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图片路径问题</title>
-    <url>/2020/05/17/2020-05-17/</url>
-    <content><![CDATA[<p><strong>图片显示不正常</strong></p>
-<a id="more"></a>
-
-<p>解决方式</p>
-<h5 id="使用-require"><a href="#使用-require" class="headerlink" title="使用 require"></a>使用 require</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        imgSrc:require(&#39;@&#x2F;assets&#x2F;images&#x2F;bg.jpg&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用~@"></a>使用~@</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;img1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .img1&#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background: url(&#39;~@&#x2F;assets&#x2F;images&#x2F;logo.png&#39;) center center no-repeat;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>图片</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用calc()计算的宽度，导致IE浏览器显示不正常</title>
-    <url>/2020/04/14/2020-04-04/</url>
-    <content><![CDATA[<p><strong>用 calc()计算的宽度，在 chrome 显示正常，显示正常，在 IE 浏览器显示不正常</strong></p>
-<a id="more"></a>
-
-<p>原本以为是盒模型没有设置的问题，后来发现是因为用 calc()计算宽度的，除不尽的问题导致的。<br>需求：一行的宽度是 1170px，分 3 块，margin-left: 14px;<br>每一块的宽度</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">width: calc((100% - 14px * 2) &#x2F; 3); &#x2F;&#x2F;380.666666667</span><br></pre></td></tr></table></figure>
-
-<p>在 chrome 浏览器显示正常，在 IE 浏览器排不下。<br>发现问题出在了，calc()除不尽的情况下，<br>chrome 浏览器保留了 3 位小数再减了 0.1(最后宽度是 380.656px);<br>这样每一块的宽度加起来没有超出总宽度,一行显示正常。<br>IE 浏览器保留了 2 位小数，最后一位小数四舍五入了(380.67px),3 块加起来超出总宽度，导致一行排不下。</p>
-<ul>
-<li><p>chrome 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416405.webp" alt="image"></p>
-</li>
-<li><p>IE 浏览器<br><img src="https://img9.doubanio.com/view/photo/l/public/p2628416406.webp" alt="image"></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>calc</tag>
-        <tag>IE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>axios 传参方式</title>
-    <url>/2019/12/18/2019-12-18/</url>
-    <content><![CDATA[<p>遇到后端需要用 form-data 传参的接口，然后了解了其他的方式。</p>
-<a id="more"></a>
-
-<ol>
-<li>Content-Type: multipart/form-data</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let params &#x3D; new FormData;</span><br><span class="line">params.append(&quot;oldPassword&quot;, this.ruleForm.oldPassword);</span><br><span class="line">params.append(&quot;newPassword&quot;, this.ruleForm.newPassword);</span><br><span class="line">this.$axios.post(&quot;&#x2F;xxx&#x2F;modify_password&quot;, params)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Content-Type: application/json</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let data &#x3D; &#123;&quot;code&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;yyyy&quot;&#125;;</span><br><span class="line">axios.post(&#96;$&#123;this.$url&#125;&#x2F;test&#x2F;testRequest&#96;,data)</span><br><span class="line">.then(res&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;res&#x3D;&gt;&#39;,res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Content-Type: application/x-www-form-urlencoded</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;需要引入qs</span><br><span class="line">axios.post(&#96;$&#123;this.$url&#125;&#x2F;test&#x2F;testRequest&#96;,qs.stringify(&#123; &#39;bar&#39;: 123 &#125;))</span><br><span class="line">.then(res&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;res&#x3D;&gt;&#39;,res);</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">const data &#x3D; &#123; &#39;bar&#39;: 123 &#125;;</span><br><span class="line">const options &#x3D; &#123;</span><br><span class="line">  method: &#39;POST&#39;,</span><br><span class="line">  headers: &#123; &#39;content-type&#39;: &#39;application&#x2F;x-www-form-urlencoded&#39; &#125;,</span><br><span class="line">  data: qs.stringify(data),</span><br><span class="line">  url,</span><br><span class="line">&#125;;</span><br><span class="line">axios(options);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>axios</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>keep-alive的生命周期</title>
-    <url>/2020/05/23/2020-05-23/</url>
-    <content><![CDATA[<p><strong>需求：在 keep-alive 的组件被激活时，需要重新获取某个数据</strong></p>
-<h5 id="keep-alive-的生命周期执行"><a href="#keep-alive-的生命周期执行" class="headerlink" title="keep-alive 的生命周期执行"></a>keep-alive 的生命周期执行</h5><p>页面第一次进入，钩子的触发顺序<br>created-&gt; mounted-&gt; activated，<br>退出时触发 deactivated<br>当再次进入（前进或者后退）时，只触发 activated<br>事件挂载的方法等，只执行一次的放在 mounted 中；组件每次进去执行的方法放在 activated 中。</p>
-<a id="more"></a>
-
-<h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 被keepalive包含的组件会被缓存 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component&gt;&lt;&#x2F;component&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
-
-<p>被 keepalive 包含的组件不会被再次初始化，也就意味着不会重走生命周期函数;<br>但是有时候是希望我们缓存的组件可以能够再次进行渲染，这时 Vue 为我们解决了这个问题;<br>被包含在 keep-alive 中创建的组件，会多出两个生命周期的钩子: activated 与 deactivated。</p>
-<ul>
-<li>activated<br>当 keepalive 包含的组件再次渲染的时候触发</li>
-<li>deactivated<br>当 keepalive 包含的组件销毁的时候触发</li>
-</ul>
-<p>keepalive 是一个抽象的组件，缓存的组件不会被 mounted,为此提供 activated 和 deactivated 钩子函数</p>
-<h5 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h5><ol>
-<li>在 vue2.0 的写法可以这样：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;acom v-if&#x3D;&quot;comval &#x3D;&#x3D;&#x3D; &#39;a&#39;&quot;&gt;&lt;&#x2F;acom&gt;</span><br><span class="line">  &lt;bcom v-if&#x3D;&quot;comval &#x3D;&#x3D;&#x3D; &#39;b&#39;&quot;&gt;&lt;&#x2F;bcom&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在 vue3.0 上面的写法会报错</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">VueCompilerError: &lt;KeepAlive&gt; expects exactly one child component.</span><br></pre></td></tr></table></figure>
-
-<p>只能写成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component :is&#x3D;&quot;comval&quot;&gt;&lt;&#x2F;component&gt;</span><br><span class="line">&lt;&#x2F;keep-alive&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>keep-alive</tag>
-        <tag>生命周期</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>element-ui 表格排序失效</title>
-    <url>/2020/06/07/2020-06-07/</url>
-    <content><![CDATA[<p><strong>失效原因：属性 prop 丢失</strong></p>
-<a id="more"></a>
-
-<p>用 el-table 的时候，如果内容写在&lt; template &gt;，正常会把 el-table-column 内的 prop 删除掉；<br>这时候，在 el-table-column 继续添加 sortable 将会失效。<br>将 prop 写上，即可解决问题。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Element Ui 滚动监听</title>
-    <url>/2020/06/20/2020-06-20/</url>
-    <content><![CDATA[<p><strong>需要对el-dialog弹窗进行滚动事件监听</strong></p>
-<a id="more"></a>
-
-<h5 id="添加监听事件"><a href="#添加监听事件" class="headerlink" title="添加监听事件"></a>添加监听事件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-button type&#x3D;&quot;primary&quot; @click&#x3D;&quot;create&quot;&gt;确认&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;el-dialog</span><br><span class="line">      :title&#x3D;&quot;ruleTitle&quot;</span><br><span class="line">      :visible.sync&#x3D;&quot;showRule&quot;</span><br><span class="line">      width&#x3D;&quot;70%&quot;</span><br><span class="line">      :append-to-body&#x3D;&quot;true&quot;</span><br><span class="line">      :before-close&#x3D;&quot;handleClose&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&lt;&#x2F;el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;el-dialog出现之后进行监听</span><br><span class="line">create()&#123;</span><br><span class="line">    this.showRule&#x3D;true;</span><br><span class="line">    this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">        document.addEventListener(&#39;scroll&#39;, this.handleScroll, true);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F;监听滚动</span><br><span class="line">handleScroll() &#123;</span><br><span class="line">  let sch &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollHeight;&#x2F;&#x2F;内容的高度</span><br><span class="line">  let cih &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].clientHeight;&#x2F;&#x2F;框的高度,固定的</span><br><span class="line">  let sct &#x3D; document.getElementsByClassName(&quot;el-dialog__body&quot;)[0].scrollTop;&#x2F;&#x2F;滚动的高度</span><br><span class="line">  &#x2F;&#x2F; console.log(sch, cih, sct);</span><br><span class="line">  if (sct &gt;&#x3D; sch - cih) &#123;</span><br><span class="line">    &#x2F;&#x2F;滚动条拉到底部了，在这里做一些事情</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在el-dialog关闭之前删除监听</span><br><span class="line">handleClose(done) &#123;</span><br><span class="line">  document.removeEventListener(&quot;scroll&quot;, this.handleScroll, true);</span><br><span class="line">  done();</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="设置-el-dialog-body-滚动条"><a href="#设置-el-dialog-body-滚动条" class="headerlink" title="设置.el-dialog__body 滚动条"></a>设置.el-dialog__body 滚动条</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;deep&#x2F; &#123;</span><br><span class="line">  .el-dialog &#123;</span><br><span class="line">    margin: 60px auto !important;</span><br><span class="line">    max-height: 550px;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    .el-dialog__body &#123;</span><br><span class="line">      max-height: 400px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>element</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端选中Excel文件后，解析并展示出来</title>
-    <url>/2021/02/01/2021-02-01/</url>
-    <content><![CDATA[<p><strong>需求：前端选中Excel文件后，先展示出来后再上传</strong></p>
-<h4 id="安装xlsx"><a href="#安装xlsx" class="headerlink" title="安装xlsx"></a>安装xlsx</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S xlsx</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h4 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h4><p>这里选择文件用的el-upload</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-upload</span><br><span class="line">  ref&#x3D;&quot;upload&quot;</span><br><span class="line">  action&#x3D;&quot;&quot;</span><br><span class="line">  accept&#x3D;&quot;.xls,.xlsx&quot;</span><br><span class="line">  :file-list&#x3D;&quot;fileList&quot;</span><br><span class="line">  :show-file-list&#x3D;&quot;false&quot;</span><br><span class="line">  :auto-upload&#x3D;&quot;false&quot;</span><br><span class="line">  :multiple&#x3D;&quot;false&quot;</span><br><span class="line">  :on-change&#x3D;&quot;onChange&quot;</span><br><span class="line">  :http-request&#x3D;&quot;uploadFile&quot;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;el-button slot&#x3D;&quot;trigger&quot; size&#x3D;&quot;small&quot; type&#x3D;&quot;primary&quot;&gt;</span><br><span class="line">    选取文件</span><br><span class="line">  &lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;el-upload&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="展示文件里的数据"><a href="#展示文件里的数据" class="headerlink" title="展示文件里的数据"></a>展示文件里的数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tabelListData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userName&quot; label&#x3D;&quot;用户名&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;displayName&quot; label&#x3D;&quot;昵称&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;userRole&quot; label&#x3D;&quot;角色&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;phoneNum&quot; label&#x3D;&quot;手机号&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;el-table-column prop&#x3D;&quot;passWord&quot; label&#x3D;&quot;密码&quot;&gt; &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="选择文件-1"><a href="#选择文件-1" class="headerlink" title="选择文件"></a>选择文件</h4><p>在选择文件夹的组件引入xlsx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;引入xlsx</span><br><span class="line">import XLSX from &quot;xlsx&quot;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 选择文件</span><br><span class="line">onChange(file, filelist) &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(file)</span><br><span class="line">  const fileReader &#x3D; new FileReader();</span><br><span class="line">  fileReader.onload &#x3D; (ev) &#x3D;&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      const data &#x3D; ev.target.result;</span><br><span class="line">      const workbook &#x3D; XLSX.read(data, &#123;</span><br><span class="line">        type: &#39;binary&#39;</span><br><span class="line">      &#125;);</span><br><span class="line">      for (let sheet in workbook.Sheets) &#123;</span><br><span class="line">        &#x2F;&#x2F;循环读取每个工作簿</span><br><span class="line">        const sheetArray &#x3D; XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);</span><br><span class="line">        &#x2F;&#x2F;若当前sheet没有数据，则continue</span><br><span class="line">        if (sheetArray.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(&quot;读取文件&quot;);</span><br><span class="line">        console.log(sheetArray);</span><br><span class="line">         sheetArray.map(item &#x3D;&gt; &#123;</span><br><span class="line">          this.tabelListData.push(&#123;</span><br><span class="line">            userName: item[&quot;用户名&quot;],</span><br><span class="line">            displayName: item[&quot;昵称&quot;],</span><br><span class="line">            userRole: item[&quot;角色&quot;],</span><br><span class="line">            phoneNum: item[&quot;手机号&quot;],</span><br><span class="line">            passWord: item[&quot;密码&quot;]</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">      this.$message.warning(&#39;文件类型不正确！&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  &#x2F;&#x2F;注意这里，有些blog写的不一样，根据情况可修改</span><br><span class="line">  fileReader.readAsBinaryString(file.raw);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>上传操作略。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>XLSX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo在macOS遇到的问题</title>
-    <url>/2021/03/08/2021-03-08/</url>
-    <content><![CDATA[<h3 id="安装hexo-cli报错"><a href="#安装hexo-cli报错" class="headerlink" title="安装hexo-cli报错"></a>安装hexo-cli报错</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>原因是因为没有权限<br>解决方法：先给目录赋予权限，再进行安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R &#96;whoami&#96; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules</span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行hexo-s报错，不造成影响"><a href="#运行hexo-s报错，不造成影响" class="headerlink" title="运行hexo s报错，不造成影响"></a>运行hexo s报错，不造成影响</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR &#123;</span><br><span class="line">  err: [Error: EISDIR: illegal operation on a directory, read] &#123;</span><br><span class="line">    errno: -21,</span><br><span class="line">    code: &#39;EISDIR&#39;,</span><br><span class="line">    syscall: &#39;read&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Plugin load failed: %s hexo-theme-landscape</span><br></pre></td></tr></table></figure>
-
-<p>解决方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules&#x2F;hexo-theme-landscape</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue项目中使用svg图片，可修改大小颜色</title>
-    <url>/2020/12/08/2020-12-08/</url>
-    <content><![CDATA[<p><strong>Vue项目中使用svg小图标</strong></p>
-<a id="more"></a>
-
-<h3 id="安装svg-sprite-loader和配置vue-config-js"><a href="#安装svg-sprite-loader和配置vue-config-js" class="headerlink" title="安装svg-sprite-loader和配置vue.config.js"></a>安装svg-sprite-loader和配置vue.config.js</h3><ol>
-<li>安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install svg-sprite-loader -S</span><br></pre></td></tr></table></figure></li>
-<li>配置规则<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;vue.config.js</span><br><span class="line">&#x2F;&#x2F; 内置路径包</span><br><span class="line">const path &#x3D; require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义resolve方法，获取绝对路径</span><br><span class="line">function resolve(dir) &#123;</span><br><span class="line">  return path.join(__dirname, dir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  chainWebpack: config &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 配置svg默认规则排除svg目录中svg文件处理</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&quot;svg&quot;)</span><br><span class="line">      .exclude.add(resolve(&quot;src&#x2F;assets&#x2F;svg&quot;))</span><br><span class="line">      .end();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 新增icons规则，设置svg-sprite-loader处理svg目录中svg文件</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&quot;icons&quot;)</span><br><span class="line">      .test(&#x2F;\.svg$&#x2F;)</span><br><span class="line">      .include.add(resolve(&quot;src&#x2F;assets&#x2F;svg&quot;))</span><br><span class="line">      .end()</span><br><span class="line">      .use(&quot;svg-sprite-loader&quot;)</span><br><span class="line">      .loader(&quot;svg-sprite-loader&quot;)</span><br><span class="line">      .options(&#123; symbolId: &quot;icon-[name]&quot; &#125;)</span><br><span class="line">      .end();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="SvgIcon组件代码"><a href="#SvgIcon组件代码" class="headerlink" title="SvgIcon组件代码"></a>SvgIcon组件代码</h3><ul>
-<li>一般放在/src/components<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;svg :class&#x3D;&quot;svgClass&quot; aria-hidden&#x3D;&quot;true&quot;&gt;</span><br><span class="line">        &lt;use :xlink:href&#x3D;&quot;iconName&quot;&gt;&lt;&#x2F;use&gt;</span><br><span class="line">    &lt;&#x2F;svg&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &#39;svg-icon&#39;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        iconClass: &#123;</span><br><span class="line">            type: String,</span><br><span class="line">            required: true</span><br><span class="line">        &#125;,</span><br><span class="line">        className: &#123;</span><br><span class="line">            type: String</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        iconName() &#123;</span><br><span class="line">            return &#96;#icon-$&#123;this.iconClass&#125;&#96;</span><br><span class="line">        &#125;,</span><br><span class="line">        svgClass() &#123;</span><br><span class="line">            if (this.className) &#123;</span><br><span class="line">                return &#39;svg-icon &#39; + this.className</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return &#39;svg-icon&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.svg-icon &#123;</span><br><span class="line">    width: 1em;</span><br><span class="line">    height: 1em;</span><br><span class="line">    vertical-align: -0.15em;</span><br><span class="line">    &#x2F;* 此属性为更改svg颜色属性设置 *&#x2F;</span><br><span class="line">    fill: currentColor;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="注册SvgIcon为全局组件"><a href="#注册SvgIcon为全局组件" class="headerlink" title="注册SvgIcon为全局组件"></a>注册SvgIcon为全局组件</h3><ul>
-<li>在src/assets创建svg文件夹，里面放svg图片和一个index.js<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;index.js</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import SvgIcon from &#39;@&#x2F;components&#x2F;SvgIcon&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 全局注册组件</span><br><span class="line">Vue.component(&#39;svg-icon&#39;, SvgIcon)</span><br><span class="line">&#x2F;&#x2F; 定义一个加载目录的函数</span><br><span class="line">const requireAll &#x3D; requireContext &#x3D;&gt; requireContext.keys().map(requireContext)</span><br><span class="line">const req &#x3D; require.context(&#39;@&#x2F;assets&#x2F;svg&#39;, false, &#x2F;\.svg$&#x2F;)</span><br><span class="line">&#x2F;&#x2F; 加载目录下的所有 svg 文件</span><br><span class="line">requireAll(req)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
-<li>main.js引入<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 引入svg</span><br><span class="line">import &#39;.&#x2F;assets&#x2F;svg&#39;;</span><br></pre></td></tr></table></figure></li>
-<li>组件调用<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;class-name:可设置颜色，大小；icon-class:svg图片的名字</span><br><span class="line">&#x2F;&#x2F;如果颜色无效，需要将svg的fill的值设置为空“fill&#x3D;&quot;&quot;”</span><br><span class="line">&lt;svg-icon class-name&#x3D;&quot;quanbu&quot; icon-class&#x3D;&quot;quanbu&quot;&gt;&lt;&#x2F;svg-icon&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>svg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue3.0 子组件调用父组件的方法</title>
-    <url>/2020/11/24/2020-11-24/</url>
-    <content><![CDATA[<p><strong>vue3.0 子组件调用父组件的方法</strong></p>
-<a id="more"></a>
-
-<h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h4><p><strong>父组件</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;register @update:changeDisplayValue&#x3D;&quot;changeDisplayValue&quot;&gt;&lt;&#x2F;register&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">setup()&#123;</span><br><span class="line">  let changeDisplayValue &#x3D; value &#x3D;&gt; &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">    loginData.displayValue &#x3D; value;</span><br><span class="line">  &#125;;</span><br><span class="line">  return &#123;</span><br><span class="line">    changeDisplayValue</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>子组件</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;register&quot;&gt;</span><br><span class="line">    &lt;h3&gt;注册&lt;&#x2F;h3&gt;</span><br><span class="line">    &lt;span @click&#x3D;&quot;toLogin&quot;&gt;去登录&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    let toLogin &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;update:changeDisplayValue&quot;, &quot;login&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">      toLogin</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法 2"></a>方法 2</h4><p><strong>父组件</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;register @changeDisplayValue=<span class="string">&quot;changeDisplayValue&quot;</span>&gt;&lt;/register&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>子组件</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getcurrentInstance&#125; <span class="keyword">from</span> vue;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="function"><span class="title">setup</span>(<span class="params">props, context</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> internalInstance = getCurrentInstance();</span><br><span class="line">  <span class="keyword">let</span> toLogin = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    internalInstance.emit(<span class="string">&quot;changeDisplayValue&quot;</span>, <span class="string">&quot;login&quot;</span>);</span><br><span class="line">    <span class="comment">// 可用json对象的方式，传多个参数</span></span><br><span class="line">    <span class="comment">//internalInstance.emit(&quot;changeDisplayValue&quot;, &#123;a:&#x27;1&#x27;,b:&#x27;2&#x27;&#125;);</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    toLogin</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue3.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 transformRequest 格式化参数</title>
-    <url>/2021/04/10/2021-04-10/</url>
-    <content><![CDATA[<p><strong>需求：某个参数需要传入多个的情况</strong></p>
-<p>选择器是多选的情况，多选的数据是一个数组，直接将数组入参，无法达到效果。<br>开始想到的方法是将数据进行拼接，后面想到可以使用transformRequest方法进行参数格式化，方便其他地方调用</p>
-<a id="more"></a>
-
-<p><strong>方式一：拼接</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D;&quot;&quot;</span><br><span class="line">this.selectValue.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">    params +&#x3D; &#96;member&#x3D;$&#123;item&#125;&amp;&#96;</span><br><span class="line">&#125;);</span><br><span class="line">params +&#x3D; &#96;teamId&#x3D;$&#123;this.teamId&#125;&#96;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
-
-<p>封装的方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postRequest &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方式二：transformRequest方法进行参数格式化</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;组件 selectValue是个数组</span><br><span class="line">let params &#x3D; &#123;</span><br><span class="line">    member: this.selectValue,</span><br><span class="line">    teamId: this.teamId</span><br><span class="line">&#125;;</span><br><span class="line">this.addMem(params);</span><br></pre></td></tr></table></figure>
-
-<p>封装的方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const postStrReq &#x3D; (url, params) &#x3D;&gt; &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">        method: &#39;post&#39;,</span><br><span class="line">        url: url,</span><br><span class="line">        data: params,</span><br><span class="line">        transformRequest: [function (data) &#123;</span><br><span class="line">            let ret &#x3D; &#39;&#39;;</span><br><span class="line">            for (let it in data) &#123;</span><br><span class="line">                ret +&#x3D; encodeURIComponent(it) + &#39;&#x3D;&#39; + encodeURIComponent(data[it]) + &#39;&amp;&#39;;</span><br><span class="line">            &#125;</span><br><span class="line">            return ret.slice(0, -1);</span><br><span class="line">        &#125;],</span><br><span class="line">        headers: &#123;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>axios</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript 字节单位换算函数</title>
-    <url>/2021/04/18/2021-04-18/</url>
-    <content><![CDATA[<p><strong>需求：字节单位换算的场景</strong></p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function byteConvert(bytes) &#123;</span><br><span class="line">    if (isNaN(bytes)) &#123;</span><br><span class="line">        return &#39;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    let symbols &#x3D; [&#39;bytes&#39;, &#39;KB&#39;, &#39;MB&#39;, &#39;GB&#39;, &#39;TB&#39;, &#39;PB&#39;, &#39;EB&#39;, &#39;ZB&#39;, &#39;YB&#39;];</span><br><span class="line">    let exp &#x3D; Math.floor(Math.log(bytes) &#x2F; Math.log(2));</span><br><span class="line">    if (exp &lt; 1) &#123;</span><br><span class="line">        exp &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line">    let i &#x3D; Math.floor(exp &#x2F; 10);</span><br><span class="line">    bytes &#x3D; bytes &#x2F; Math.pow(2, 10 * i);</span><br><span class="line"></span><br><span class="line">    if (bytes.toString().length &gt; bytes.toFixed(2).toString().length) &#123;</span><br><span class="line">        bytes &#x3D; bytes.toFixed(2);</span><br><span class="line">    &#125;</span><br><span class="line">    return bytes + &#39; &#39; + symbols[i];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 函数调用</span><br><span class="line">console.log(byteConvert(109784));&#x2F;&#x2F;107.21 KB</span><br></pre></td></tr></table></figure>
-
-<p>详解：<a href="https://juejin.cn/post/6844904018238504967">https://juejin.cn/post/6844904018238504967</a></p>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2018/01/23/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
